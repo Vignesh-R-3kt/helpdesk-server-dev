@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Review Mail <span></span></h1>
+<mat-dialog-content class="mat-typography">
+    <div class="content-wrapper">
+        <h2>Subject : {{emailData.subject}}</h2>
+        <div class="message-body-wrapper">
+            <p class="message-title">Message body :</p>
+            <p *ngFor="let item of emailBody" style="white-space: break-spaces;">{{item}}</p>
+            <p>Start Date and Time : [ <span>{{emailData.startDate}}</span> || <span>Time:
+                    {{emailData.startTime}}</span> ]
+            </p>
+            <p>Expected End Date and Time : [ <span>{{emailData.endDate}}</span> || <span>Time:
+                    {{emailData.endTime}}</span> ]</p>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close class="close-btn"
+        matTooltip="Close"><mat-icon>close</mat-icon>Close</button>
+    <button class="send-btn" mat-raised-button (click)="submitMail()"> <mat-icon>send</mat-icon> Send Mail</button>
+</mat-dialog-actions>

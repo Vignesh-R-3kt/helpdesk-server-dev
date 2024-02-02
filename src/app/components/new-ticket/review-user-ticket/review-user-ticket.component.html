@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Review Ticket</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="table-wrapper">
+        <table>
+            <tbody>
+                <tr>
+                    <td width="25%">Subject :</td>
+                    <td>{{ formValue.subject }}</td>
+                </tr>
+                <tr>
+                    <td>priority :</td>
+                    <td style="text-transform: capitalize;">{{ formValue.priority }}</td>
+                </tr>
+                <tr>
+                    <td>category :</td>
+                    <td style="text-transform: capitalize;">{{ formValue.category }}</td>
+                </tr>
+                <tr>
+                    <td>Description :</td>
+                    <td>{{ formValue.description }}</td>
+                </tr>
+                <tr *ngIf="formValue.preview && formValue.file" class="img-row">
+                    <td>Image Preview :</td>
+                    <td>
+                        <div class="img-wrapper">
+                            <img [src]="formValue.preview" alt="preview-img">
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <p class="message">*** Please review the ticket details before submission, changes won't be possible once submitted.
+        ***</p>
+    <button mat-raised-button mat-dialog-close class="close-btn"
+        matTooltip="Close"><mat-icon>close</mat-icon>Close</button>
+    <button mat-raised-button class="submit-btn" (click)="submitTicket()" matTooltip="Submit ticket">Submit
+        <mat-icon>send</mat-icon></button>
+</mat-dialog-actions>

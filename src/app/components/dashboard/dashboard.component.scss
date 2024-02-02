@@ -1,0 +1,155 @@
+@import "../../../custom_variables";
+
+.top-section {
+  display: flex;
+  align-items: center;
+  gap: rem(32);
+  padding: 0 rem(8);
+  margin-top: rem(16);
+  flex-direction: row;
+
+  h3 {
+    margin: 0;
+    font-size: rem(24);
+    font-weight: 500;
+  }
+
+  a {
+    background: $primary;
+    color: $white !important;
+  }
+}
+
+.tickets-wrapper {
+  display: flex;
+  gap: rem(12);
+  margin: 0 auto;
+  padding-top: rem(32);
+  flex-wrap: wrap;
+
+  &.loader-comp {
+    li {
+      &:not(.disabled) {
+        p {
+          span {
+            animation: revealText 0.75s 0.4s ease forwards;
+          }
+        }
+      }
+    }
+  }
+
+  li {
+    background: $white;
+    position: relative;
+    border-radius: rem(12);
+    cursor: pointer;
+    padding-bottom: rem(120);
+    overflow: hidden;
+    box-shadow: $box-shadow;
+    width: calc(25% - 10px);
+    border-bottom: rem(1) solid $grey;
+
+    &:hover {
+      .counts {
+        height: 100%;
+        transition: all 0.2s ease;
+
+        p {
+          font-size: rem(38);
+          transition: all 0.2s ease;
+          transform: translate(0);
+          color: $secondary;
+          line-height: rem(38);
+          height: rem(38);
+
+          span {
+            line-height: rem(38);
+          }
+        }
+
+        .text,
+        .icon {
+          height: rem(20);
+          opacity: 1;
+          transition: all 0.2s 0.1s ease;
+        }
+
+        .icon {
+          transform: translateX(0);
+        }
+      }
+    }
+
+    &.disabled {
+      pointer-events: none !important;
+      filter: grayscale(1);
+      opacity: 0.5;
+    }
+
+    .title {
+      padding: rem(8);
+
+      h3 {
+        text-align: center;
+        font-weight: 300;
+      }
+    }
+
+    .counts {
+      position: absolute;
+      width: 100%;
+      height: 76%;
+      background: red;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: $white;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      border-radius: rem(8);
+      flex-direction: column;
+      gap: rem(8);
+
+      p {
+        font-size: rem(32);
+        font-weight: 700;
+        letter-spacing: rem(2);
+        transform: translateY(10px);
+        display: flex;
+        flex-direction: column;
+        height: rem(24);
+        overflow: hidden;
+        line-height: rem(24);
+
+        span {
+          line-height: rem(24);
+        }
+      }
+
+      .text,
+      .icon {
+        opacity: 0;
+        height: 0;
+        color: $grey;
+      }
+
+      .icon {
+        color: $primary;
+        transform: translateX(-10px);
+        display: flex;
+      }
+    }
+  }
+}
+
+@keyframes revealText {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}

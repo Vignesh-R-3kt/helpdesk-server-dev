@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="top-section">
+            <mat-form-field appearance="outline" style="margin-bottom: -22px;">
+                <mat-label>Tickets Status</mat-label>
+                <mat-select [value]=" tabTypeName" (valueChange)="handleDropdownChange($event)"
+                    matTooltip="Select ticket status">
+                    <mat-option value="all">All</mat-option>
+                    <mat-option value="open">Open</mat-option>
+                    <mat-option value="progress">Progress</mat-option>
+                    <mat-option value="resolved">Resolved</mat-option>
+                    <mat-option value="rejected">Rejected</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <a routerLink='/main-body/new-ticket' mat-raised-button class="new-ticket-btn"
+                matTooltip="Add new ticket"><mat-icon fontIcon="add"></mat-icon> Add New Ticket</a>
+        </div>
+    </div>
+
+    <div class="dataTable-content-wrapper">
+        <table id="ticketsTable" datatable [dtOptions]="dt0ptions">
+            <thead>
+                <tr>
+                    <th style="width: 50px !important;">Sr. No.</th>
+                    <th>Ticket ID</th>
+                    <th>Owner</th>
+                    <th>Email</th>
+                    <th style="align-items: center !important;">Subject</th>
+                    <th>Category</th>
+                    <th style="text-align: center;">Status</th>
+                    <th style="text-align: center;">Priority</th>
+                    <th style="width: 80px;">Created on</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of filteredData; let i = index">
+                    <td style="text-align: center;"
+                        [ngClass]="{'high-bd' : data.priority === 'high', 'medium-bd' : data.priority === 'medium', 'low-bd' : data.priority === 'low'}">
+                        {{i+1}}</td>
+                    <td style="font-weight: 700;" class="ticket-number-cell">
+                        <div class="content-wrapper">
+                            {{ data.ticketNo }} <mat-icon *ngIf="data.unreadMsgCount && data.unreadMsgCount > 0"
+                                matBadge="{{data.unreadMsgCount}}" matBadgeSize="small"
+                                matTooltip="{{data.unreadMsgCount}} unread messages" aria-hidden="false"
+                                (click)="openChatBox(data)">notifications</mat-icon>
+                        </div>
+                    </td>
+                    <td style="white-space: nowrap; font-weight: 400;"
+                        [ngClass]="{'highlight' : data.email === userEmail && userRoleType !== 'user'}">{{ data.email
+                        === userEmail && userRoleType !== 'user' ? "Self" :
+                        data.username }}</td>
+                    <td style="white-space: nowrap; font-weight: 400; text-transform: lowercase;"
+                        [ngClass]="{'highlight' : data.email === userEmail && userRoleType !== 'user'}">{{ data.email }}
+                    </td>
+                    <td>
+                        <p
+                            style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; margin: 0; text-transform: none;">
+                            {{data.subject}}</p>
+                    </td>
+                    <td style="font-weight: 500;">{{data.category}}</td>
+                    <td
+                        [ngClass]="{'open': data.status === 'open','closed': data.status === 'resolved','progress': data.status === 'progress', 'rejected': data.status === 'rejected'}">
+                        <div class="status-wrapper">
+                            <span class="mat-elevation-z2">{{data.status}}</span>
+                        </div>
+                    </td>
+                    <td class="priority"
+                        [ngClass]="{'high' : data.priority === 'high', 'medium' : data.priority === 'medium', 'low' : data.priority === 'low'}">
+                        <span class="mat-elevation-z2">{{data.priority}}</span>
+                    </td>
+                    <td>{{data.date | dates}}</td>
+                    <td>
+                        <div class="buttons-wrapper">
+                            <button mat-flat-button (click)="openDetailsPopup(data)" class="mat-elevation-z4"
+                                matTooltip=" View ticket details"><mat-icon
+                                    fontIcon="remove_red_eye"></mat-icon>View</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

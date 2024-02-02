@@ -1,0 +1,42 @@
+@import "../../../../custom_variables";
+
+mat-dialog-actions {
+  .send-btn {
+    background: $primary !important;
+    color: $white !important;
+  }
+}
+
+.content-wrapper {
+  h2 {
+    color: $black;
+    margin-bottom: rem(16);
+    font-weight: 700;
+    background: $bg;
+    padding: rem(6) rem(24);
+    border-radius: rem(4);
+  }
+
+  .message-body-wrapper {
+    background: $bg;
+    padding: rem(24);
+    border-radius: rem(4);
+
+    p {
+      color: $black;
+      margin: 0;
+      margin-bottom: rem(10);
+
+      span {
+        font-weight: 700;
+      }
+
+      &.message-title {
+        font-size: rem(18);
+        font-weight: 700;
+        margin-bottom: rem(14);
+        text-decoration: underline;
+      }
+    }
+  }
+}

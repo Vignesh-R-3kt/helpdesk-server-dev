@@ -1,0 +1,10 @@
+<div class="container">
+    <ul class="listItem">
+        <li routerLinkActive="active" *ngFor="let navItem of filteredNavItems">
+            <a [routerLink]="navItem.path">
+                <mat-icon>{{ navItem.img }}</mat-icon>
+                <span>{{ navItem.name }}</span>
+            </a>
+        </li>
+    </ul>
+</div>

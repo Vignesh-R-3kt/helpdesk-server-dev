@@ -1,0 +1,13 @@
+@import "../../../../../custom_variables";
+
+mat-form-field {
+  width: 100%;
+}
+
+.resolve-btn {
+  background: $green !important;
+
+  &:disabled {
+    background: $grey !important;
+  }
+}

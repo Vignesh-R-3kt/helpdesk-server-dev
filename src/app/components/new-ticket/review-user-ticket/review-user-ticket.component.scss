@@ -1,0 +1,78 @@
+@import "../../../../custom_variables";
+
+table {
+  margin-bottom: rem(12);
+  width: 100%;
+  tbody {
+    tr {
+      td {
+        padding: rem(12);
+        text-transform: capitalize;
+        border: none;
+        border: rem(1) solid $grey;
+
+        &:first-child {
+          padding-right: rem(12);
+          vertical-align: top;
+          white-space: nowrap;
+          font-weight: 500;
+          font-size: rem(15);
+        }
+
+        &:last-child {
+          line-height: rem(22);
+          font-weight: 700;
+          font-size: rem(16);
+          color: $black;
+          text-transform: none;
+        }
+
+        .img-wrapper {
+          display: inline-flex;
+          justify-content: center;
+          border-radius: rem(6);
+          box-shadow: $box-shadow;
+
+          img {
+            min-width: rem(200);
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: rem(6);
+          }
+        }
+      }
+
+      &.img-row {
+        td {
+          border: none !important;
+        }
+      }
+    }
+  }
+}
+
+.message {
+  text-align: center;
+  font-size: rem(12);
+  font-weight: 700;
+  color: $primary;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.submit-btn {
+  color: $white;
+  background: $primary;
+}
+
+.close-btn {
+  background: $white !important;
+  color: $black !important;
+}
+
+table,
+tbody,
+tr,
+td {
+  border-collapse: collapse;
+}

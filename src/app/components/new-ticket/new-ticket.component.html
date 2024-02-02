@@ -1,0 +1,121 @@
+<div class="container">
+    <mat-card>
+        <form [formGroup]="ticketForm" (submit)="fetchFormDetails()">
+            <h2>Create New Ticket :</h2>
+            <div class="topContent">
+                <div class="subjectWrapper">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Subject:</mat-label>
+                        <input type="text" matInput formControlName="subject" (input)="replaceWhiteSpace($event)"
+                            matTooltip="Enter ticket subject">
+                        <mat-error
+                            *ngIf="ticketForm.controls['subject'].touched && ticketForm.controls['subject'].dirty && ticketForm.controls['subject'].errors?.['minlength']">
+                            Minimum 5 characters required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="ticketForm.controls['subject'].touched && ticketForm.controls['subject'].dirty && ticketForm.controls['subject'].errors?.['required']">
+                            Required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="ticketForm.controls['subject'].touched && ticketForm.controls['subject'].dirty && ticketForm.controls['subject'].errors?.['maxlength']">
+                            Maximum 255 characters allowed
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="dateWrapper">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Date:</mat-label>
+                        <input type="date" matInput [value]="today" formControlName="date">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="middleContent">
+                <div class="PriorityWrapper">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Priority:</mat-label>
+                        <mat-select formControlName="priority" matTooltip="Select priority">
+                            <!-- <mat-option value="high">High</mat-option>
+                            <mat-option value="medium">Medium</mat-option>
+                            <mat-option value="low">Low</mat-option> -->
+                            <mat-option [value]="item"
+                                *ngFor="let item of dropDownValue?.priority">{{item}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="categoryWrapper">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Category:</mat-label>
+                        <mat-select formControlName="category" matTooltip="Select category">
+                            <!-- <mat-option value="hardware issue">Hardware Issue</mat-option>
+                            <mat-option value="software issue">Software Issue</mat-option>
+                            <mat-option value="OS issue">OS Issue</mat-option>
+                            <mat-option value="HR related issue">HR Related Issues</mat-option>
+                            <mat-option value="others">Others</mat-option> -->
+                            <mat-option [value]="item"
+                                *ngFor="let item of dropDownValue?.category">{{item}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="bottomContent">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Description:</mat-label>
+                    <textarea (keypress)="removeEnterSpace($event)" (input)="replaceWhiteSpace($event)"
+                        matTooltip="Enter ticket description" matInput formControlName="description"></textarea>
+                    <mat-error
+                        *ngIf="ticketForm.controls['description'].touched && ticketForm.controls['description'].dirty && ticketForm.controls['description'].errors?.['minlength']">
+                        Minimum 20 characters required
+                    </mat-error>
+                    <mat-error
+                        *ngIf="ticketForm.controls['description'].touched && ticketForm.controls['description'].dirty && ticketForm.controls['description'].errors?.['required']">
+                        Required
+                    </mat-error>
+                    <mat-error
+                        *ngIf="ticketForm.controls['description'].touched && ticketForm.controls['description'].dirty && ticketForm.controls['description'].errors?.['maxlength']">
+                        Maximum 500 characters allowed
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="btnWrapper">
+                <label>Attachment: (File Types: jpg, jpeg, png)</label>
+                <div class="file-input-wrapper" *ngIf="!this.formInputValue.file">
+                    <label matTooltip="Choose attachment file"><mat-icon fontIcon="attach_file"></mat-icon><input
+                            class="btn1" accept="image/png, image/jpeg" type="file" (click)="clearFileInput()"
+                            (change)="updateUploadFile($event)" title="" formControlName="file"></label>
+                </div>
+                <div class="file-output-wrapper" *ngIf="this.formInputValue.file">
+                    <p>File Name: <span>{{this.formInputValue.file.name}}</span></p>
+                    <div class="actions-wrapper">
+                        <button mat-mini-fab color="primary" matTooltip="Delete attachment" class="delete-attachment"
+                            (click)="clearFileInput()" aria-label="Example icon button with a delete icon">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <ng-container>
+                    <mat-error class="errorMessage" *ngIf="isFileTooLarge">
+                        File size should be less than 1MB.
+                    </mat-error>
+                    <mat-error class="errorMessage" *ngIf="isIncorrectFileFormat">
+                        Unsupported file format.
+                    </mat-error>
+                </ng-container>
+                <button mat-raised-button class="btn2" type="submit" matTooltip="Review ticket"
+                    [disabled]="!ticketForm.valid"><mat-icon>
+                        rate_review</mat-icon>Review</button>
+            </div>
+        </form>
+    </mat-card>
+
+    <div class="roadmap-container">
+        <p><span class="circle mat-elevation-z2">1</span>add details</p>
+        <span class="line"></span>
+        <p><span class="circle mat-elevation-z2">2</span>review details</p>
+        <span class="line"></span>
+        <p><span class="circle mat-elevation-z2">3</span>submit ticket</p>
+    </div>
+</div>

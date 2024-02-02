@@ -1,0 +1,37 @@
+.mat-mdc-snack-bar-container {
+  margin-top: rem(94) !important;
+
+  .mdc-snackbar__surface {
+    .mat-mdc-snack-bar-label {
+      color: $white;
+      font-size: rem(14);
+    }
+
+    .mat-mdc-snack-bar-action {
+      span {
+        color: $white;
+        font-size: rem(12);
+      }
+    }
+  }
+
+  &.error-message {
+    .mdc-snackbar__surface {
+      background: $red;
+    }
+  }
+
+  &.success-message {
+    .mdc-snackbar__surface {
+      background: $green;
+    }
+  }
+
+  &.info-message {
+    margin-top: rem(84) !important;
+
+    .mdc-snackbar__surface {
+      background: $primary;
+    }
+  }
+}

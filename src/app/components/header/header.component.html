@@ -1,0 +1,28 @@
+<header>
+    <div class="logo-wrapper">
+        <div class="img-wrapper">
+            <a routerLink="/main-body/dashboard">
+                <img src="../../../assets/images/help-desk-logo.png" alt="help-desk-logo">
+            </a>
+        </div>
+        <div class="line"></div>
+        <div class="img-wrapper">
+            <img src="../../../assets/images/3kt-logo-u.png" alt="help-desk-logo">
+        </div>
+    </div>
+    <div class="nameSection mat-elevation-z4">
+        <div class="nameWrapper">
+            <p>{{userFullName}}</p>
+        </div>
+        <div class="dropDown">
+            <div class="profile-wrapper profile-item">
+                <button class="btn mat-elevation-z3" (click)="toggleDropdown()" [ngClass]="{'active':isDropdownOpen}">
+                    <mat-icon class="profile-item">arrow_drop_down</mat-icon></button>
+                <div class="dropdown-menu profile-item mat-elevation-z1" [ngClass]="{'active': isDropdownOpen}">
+                    <a (click)="logout()"><mat-icon fontIcon="power_settings_new"></mat-icon>
+                        <span>Logout</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

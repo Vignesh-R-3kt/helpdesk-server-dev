@@ -1,0 +1,75 @@
+@import "../../../custom_variables";
+
+.container {
+  position: fixed;
+  top: rem(112);
+  width: rem(180);
+
+  .listItem {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    gap: rem(8);
+
+    li {
+      position: relative;
+      border-radius: rem(8);
+      border: rem(1) solid #e1e1e1;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: rem(10);
+        height: rem(10);
+        background: $black;
+        right: rem(-5);
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        display: none;
+      }
+
+      &.active {
+        background: $black !important;
+        color: $white;
+        cursor: pointer;
+
+        &::after {
+          display: block;
+        }
+
+        a {
+          color: $white;
+        }
+
+        .top,
+        .bottom {
+          display: inline-block;
+        }
+      }
+
+      &:hover {
+        background: $bg;
+      }
+
+      a {
+        display: flex;
+        gap: rem(12);
+        padding: rem(12) rem(16);
+        align-items: center;
+        font-weight: 700;
+        color: $black;
+        font-size: rem(14);
+
+        mat-icon {
+          &::before {
+            font-size: rem(28);
+          }
+        }
+
+        span {
+          margin-top: rem(2);
+        }
+      }
+    }
+  }
+}

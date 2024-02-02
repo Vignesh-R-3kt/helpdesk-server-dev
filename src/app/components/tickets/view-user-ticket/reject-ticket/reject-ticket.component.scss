@@ -1,0 +1,13 @@
+@import "../../../../../custom_variables";
+
+mat-form-field {
+  width: 100%;
+}
+
+.reject-btn {
+  background: $red !important;
+
+  &:disabled {
+    background: $grey !important;
+  }
+}

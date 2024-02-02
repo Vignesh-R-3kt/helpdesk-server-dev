@@ -1,0 +1,56 @@
+<div class="container">
+    <mat-card>
+        <h4>Service Request:</h4>
+        <form class="service-request-form" [formGroup]="serviceRequestForm" (submit)="getFormValues()">
+            <mat-form-field appearance="outline">
+                <mat-label>Subject:</mat-label>
+                <input matInput type="text" formControlName="subject">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Message body</mat-label>
+                <textarea matInput rows="10" formControlName="message"></textarea>
+            </mat-form-field>
+            <div class="dates-wrapper">
+                <div class="start-date-wrapper">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Start Date</mat-label>
+                        <input readonly matInput [matDatepicker]="startDate" formControlName="startDate"
+                            [min]="startMindate" (ngModelChange)="updateEndMinDate()">
+                        <mat-datepicker-toggle matIconSuffix [for]="startDate"></mat-datepicker-toggle>
+                        <mat-datepicker #startDate></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Start Time</mat-label>
+                        <input matInput name="selected_time_A" formControlName="startTime"
+                            [ngxMatTimepicker]="startTime" readonly />
+                        <mat-icon matSuffix (click)="startTime.open()">
+                            watch_later
+                        </mat-icon>
+                    </mat-form-field>
+                    <ngx-mat-timepicker #startTime></ngx-mat-timepicker>
+                </div>
+                <span class="to-text">to</span>
+                <div class="end-date-wrapper">
+                    <mat-form-field appearance="outline">
+                        <mat-label>End Date</mat-label>
+                        <input matInput readonly [matDatepicker]="endDate" [min]="endMindate" formControlName="endDate">
+                        <mat-datepicker-toggle matIconSuffix [for]="endDate"></mat-datepicker-toggle>
+                        <mat-datepicker #endDate></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>End Time</mat-label>
+                        <input matInput name="selected_time_A" formControlName="endTime" [ngxMatTimepicker]="endtime"
+                            readonly />
+                        <mat-icon matSuffix (click)="endtime.open()">
+                            watch_later
+                        </mat-icon>
+                    </mat-form-field>
+                    <ngx-mat-timepicker #endtime></ngx-mat-timepicker>
+                </div>
+            </div>
+
+            <button mat-raised-button [disabled]="!serviceRequestForm.valid"> <mat-icon>rate_review</mat-icon> Review
+                Mail</button>
+        </form>
+    </mat-card>
+</div>

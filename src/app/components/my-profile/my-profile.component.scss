@@ -1,0 +1,52 @@
+@import "../../../custom_variables";
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  mat-card {
+    padding: rem(32) rem(60);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: rem(70);
+    border-top: rem(80) solid $secondary;
+    min-width: 40%;
+
+    h3 {
+      color: $secondary;
+      font-size: rem(26);
+      font-weight: 700;
+    }
+
+    p {
+      color: $grey;
+    }
+
+    .img-wrapper {
+      width: rem(80);
+      height: rem(80);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: rem(-35);
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      border: rem(3) solid $white;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.8);
+      }
+    }
+  }
+}

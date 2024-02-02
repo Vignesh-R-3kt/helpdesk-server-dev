@@ -1,0 +1,27 @@
+@import "../../../custom_variables";
+
+.container {
+  max-width: rem(1440);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.body-container {
+  min-height: 100vh;
+  padding-top: rem(80);
+  display: flex;
+
+  .navbar-wrapper {
+    width: 16%;
+    background: $white;
+    position: relative;
+    padding: rem(32) rem(12);
+    box-shadow: $box-shadow;
+  }
+
+  .content-wrapper {
+    width: 84%;
+    background: $bg;
+    padding: rem(24) rem(32);
+  }
+}

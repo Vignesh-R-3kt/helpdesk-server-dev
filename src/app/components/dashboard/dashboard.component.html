@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="top-section">
+            <h3>Tickets</h3>
+            <a mat-raised-button [routerLink]="'/main-body/new-ticket'"
+                matTooltip="Add new ticket"><mat-icon>add</mat-icon> New Ticket</a>
+        </div>
+        <ul class="tickets-wrapper" [ngClass]="{'loader-comp' : totalCount > 0}">
+            <li (click)="redirectToTicketsPage('all')" [ngClass]="{'disabled': totalCount === '00'}">
+                <div class="title">
+                    <h3>All</h3>
+                </div>
+                <div class="counts">
+                    <p>
+                        <span>00</span>
+                        <span>{{totalCount}}</span>
+                    </p>
+                    <span class="text">All tickets</span>
+                    <span class="icon"><mat-icon>keyboard_arrow_right</mat-icon></span>
+                </div>
+            </li>
+            <li (click)="redirectToTicketsPage('open')" [ngClass]="{'disabled': waitingCount === '00'}">
+                <div class="title">
+                    <h3>Open</h3>
+                </div>
+                <div class="counts">
+                    <p>
+                        <span>00</span>
+                        <span>{{waitingCount}}</span>
+                    </p>
+                    <span class="text">Open tickets</span>
+                    <span class="icon"><mat-icon>keyboard_arrow_right</mat-icon></span>
+                </div>
+            </li>
+            <li (click)="redirectToTicketsPage('progress')" [ngClass]="{'disabled': progressCount === '00'}">
+                <div class="title">
+                    <h3>Progress</h3>
+                </div>
+                <div class="counts">
+                    <p>
+                        <span>00</span>
+                        <span>{{progressCount}}</span>
+                    </p>
+                    <span class="text">Progress tickets</span>
+                    <span class="icon"><mat-icon>keyboard_arrow_right</mat-icon></span>
+                </div>
+            </li>
+            <li (click)="redirectToTicketsPage('resolved')" [ngClass]="{'disabled': resolvedCount === '00'}">
+                <div class="title">
+                    <h3>Resolved</h3>
+                </div>
+                <div class="counts">
+                    <p>
+                        <span>00</span>
+                        <span>{{resolvedCount}}</span>
+                    </p>
+                    <span class="text">Resolved tickets</span>
+                    <span class="icon"><mat-icon>keyboard_arrow_right</mat-icon></span>
+                </div>
+            </li>
+            <li (click)="redirectToTicketsPage('rejected')" [ngClass]="{'disabled': rejectedCount === '00'}">
+                <div class="title">
+                    <h3>Rejected</h3>
+                </div>
+                <div class="counts">
+                    <p>
+                        <span>00</span>
+                        <span>{{rejectedCount}}</span>
+                    </p>
+                    <span class="text">Rejected tickets</span>
+                    <span class="icon"><mat-icon>keyboard_arrow_right</mat-icon></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

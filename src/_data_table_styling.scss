@@ -1,0 +1,270 @@
+// data Table
+.dataTable-content-wrapper {
+  padding: rem(24);
+  box-shadow: $box-shadow;
+  margin-top: rem(18);
+  border-radius: rem(6);
+  background: #fafafa;
+  position: relative;
+
+  .dataTables_wrapper {
+    overflow-x: auto;
+    padding-bottom: rem(18);
+    padding-top: rem(48);
+    padding-bottom: rem(62);
+    position: static;
+
+    &::-webkit-scrollbar {
+      height: rem(12);
+      background: $bg;
+      border-radius: rem(2);
+
+      &-thumb {
+        border-radius: rem(2);
+        background: $grey;
+      }
+    }
+
+    .dataTables_length,
+    .dataTables_filter {
+      margin-bottom: rem(14);
+      position: absolute;
+
+      label,
+      input,
+      select {
+        font-size: rem(14);
+        border-radius: rem(6);
+        padding: rem(4) rem(6);
+        font-weight: 600;
+        color: $black;
+      }
+
+      input {
+        margin-left: rem(6);
+        font-weight: 400;
+      }
+    }
+  }
+
+  .dataTables_length {
+    top: rem(24);
+    left: rem(24);
+  }
+
+  .dataTables_filter {
+    top: rem(24);
+    right: rem(24);
+  }
+
+  .dataTables_info {
+    left: rem(24);
+    bottom: rem(48);
+  }
+
+  .dataTables_paginate {
+    right: rem(24);
+    bottom: rem(48);
+  }
+
+  .dataTables_info,
+  .dataTables_paginate {
+    margin-top: rem(14);
+    font-size: rem(14);
+    font-weight: 600;
+    color: $black;
+    position: absolute;
+
+    * {
+      font-size: rem(14);
+      font-weight: 600;
+    }
+
+    .paginate_button:not(.disabled) {
+      background: $white;
+      border-radius: rem(6) !important;
+      border: rem(1) solid $grey !important;
+
+      &:hover {
+        color: $black !important;
+        background: $bg !important;
+      }
+
+      &:active {
+        box-shadow: none !important;
+      }
+
+      &.current {
+        background: $black !important;
+        color: $white !important;
+
+        &:hover {
+          color: $white !important;
+          cursor: context-menu !important;
+        }
+      }
+    }
+  }
+
+  .dataTable {
+    border: none !important;
+    border-spacing: 0 rem(8);
+    margin-right: rem(24);
+
+    tr th,
+    td {
+      font-size: rem(15);
+      border: none;
+      vertical-align: middle;
+      text-transform: capitalize;
+      border: rem(1) solid $bg;
+    }
+
+    thead {
+      th {
+        white-space: nowrap;
+        border-top: rem(1) solid $grey;
+        border-bottom: rem(1) solid $grey;
+
+        &.description {
+          max-width: rem(200);
+        }
+
+        &.sorting {
+          &::after,
+          &::before {
+            color: $black !important;
+          }
+
+          &.sorting_asc {
+            &::before {
+              opacity: 1 !important;
+            }
+          }
+
+          &.sorting_desc {
+            &::after {
+              opacity: 1 !important;
+            }
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        background: $white;
+        border: rem(1) solid $grey;
+        box-shadow: $box-shadow;
+        border-radius: rem(8);
+
+        td {
+          text-align: left;
+          font-weight: 500;
+          font-size: rem(14);
+          white-space: nowrap;
+
+          &.dataTables_empty {
+            text-align: center;
+            font-weight: 400 !important;
+            border: none !important;
+            border-radius: rem(6) !important;
+          }
+
+          &:first-child {
+            border-radius: rem(8) 0 0 rem(8);
+            font-weight: 700;
+            border-left: rem(3) solid $black;
+
+            &.high-bd {
+              border-left-color: $red;
+            }
+
+            &.medium-bd {
+              border-left-color: $orange;
+            }
+
+            &.low-bd {
+              border-left-color: $green;
+            }
+          }
+
+          &:last-child {
+            border-radius: 0 rem(8) rem(8) 0;
+          }
+
+          .status-wrapper {
+            padding: rem(6) rem(12);
+            display: flex;
+            justify-content: center;
+
+            span {
+              padding: rem(3) rem(8);
+              min-width: rem(85);
+              border-radius: rem(32);
+              text-align: center;
+              color: $white;
+              font-size: rem(12);
+              display: flex;
+              align-items: center;
+              gap: rem(4);
+              justify-content: center;
+              background: $secondary;
+
+              mat-icon {
+                width: unset;
+                height: unset;
+                font-size: rem(18);
+              }
+            }
+          }
+
+          &.rejected {
+            span {
+              background: $grey;
+            }
+          }
+
+          .buttons-wrapper {
+            display: flex;
+            justify-content: center;
+
+            button {
+              background: $black;
+              color: $white;
+              font-size: rem(12);
+              text-transform: capitalize;
+              padding: rem(4) rem(10) !important;
+              height: rem(28);
+            }
+          }
+
+          &.description {
+            p {
+              width: rem(150);
+              overflow: hidden;
+              text-overflow: ellipsis;
+              margin: 0;
+            }
+          }
+
+          .img-wrapper {
+            width: rem(35);
+            height: rem(35);
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: rem(4);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  div.dataTables_processing div {
+    display: none;
+  }
+}

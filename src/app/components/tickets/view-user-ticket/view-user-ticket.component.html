@@ -1,0 +1,97 @@
+<h1 mat-dialog-title>Ticket ID: <span>{{ticketValues.ticketNo}}</span></h1>
+<mat-dialog-content class="mat-typography">
+    <div class="ticket-body">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Ticket Owner:</td>
+                    <td>{{ticketValues.username}} <span
+                            style=" text-transform: lowercase; font-weight: 500; color: #000000;">({{
+                            ticketValues.email
+                            }})</span></td>
+                </tr>
+                <tr>
+                    <td>Raised On:</td>
+                    <td>{{ ticketValues.date | dates }}</td>
+                </tr>
+                <tr>
+                    <td width="30%">Subject:</td>
+                    <td style="text-transform: none;">{{ ticketValues.subject }}</td>
+                </tr>
+                <tr>
+                    <td>Category:</td>
+                    <td>{{ticketValues.category}}</td>
+                </tr>
+                <tr class="{{ticketValues.priority}}">
+                    <td>Priority:</td>
+                    <td><span class="mat-elevation-z2">{{ticketValues.priority}}</span></td>
+                </tr>
+                <tr>
+                    <td>Status:</td>
+                    <td><span class="status mat-elevation-z2"
+                            [ngClass]="{'open': ticketValues.status === 'open','closed': ticketValues.status === 'resolved','progress': ticketValues.status === 'progress', 'rejected': ticketValues.status === 'rejected'}"><mat-icon
+                                *ngIf="ticketValues.status === 'rejected'">not_interested</mat-icon>
+                            {{ticketValues.status}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td style="text-transform: none;">{{ticketValues.description}}</td>
+                </tr>
+                <tr *ngIf="ticketValues.comments">
+                    <td>{{ticketValues.status === 'rejected' ? 'Rejection Reason': 'Solution / Comments'}}:</td>
+                    <td style="text-transform: unset;"
+                        [ngClass]="{'reason' : ticketValues.status === 'rejected' , 'solution' : ticketValues.status === 'resolved'}">
+                        {{ ticketValues.comments }}</td>
+                </tr>
+                <tr *ngIf="ticketValues.status === 'resolved' || ticketValues.status === 'rejected' ">
+                    <td>Ticket {{ ticketValues.status }} on: </td>
+                    <td>{{ ticketValues.ticketCloseDate }}</td>
+                </tr>
+                <tr *ngIf="ticketValues.modifiedBy">
+                    <td class="modifiedUser">Ticket <span *ngIf="ticketValues.status === 'progress'">Accepted</span>
+                        <span *ngIf="ticketValues.status === 'rejected'">Rejected</span> <span
+                            *ngIf="ticketValues.status === 'resolved'">Resolved</span> by:
+                    </td>
+                    <td style="text-transform:lowercase;">{{ ticketValues.modifiedBy }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button mat-raised-button class="view-img-btn" (click)="viewImg = !viewImg" *ngIf="ticketValues.imageUrl"
+            matTooltip="Toggle image"><mat-icon *ngIf="!viewImg">visibility</mat-icon><mat-icon
+                *ngIf="viewImg">visibility_off</mat-icon>{{ viewImg ?
+            "Hide Image" : "View Image"
+            }}</button>
+        <div class="img-wrapper" [ngClass]="{'enableImg' : viewImg}">
+            <img [src]="ticketValues.imageUrl" alt="ticket-image">
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="content-wrapper">
+        <div class="chat-btn-wrapper">
+            <button mat-raised-button class="chat-btn" matTooltip="Ticket discussion"
+                matBadge="{{ticketValues.unreadMsgCount > 0 ? ticketValues.unreadMsgCount : ''}}" matBadgeSize="small"
+                (click)="handleChatBox()">
+                <mat-icon>chat</mat-icon>
+                <span>Ticket Discussion</span>
+            </button>
+        </div>
+        <div class="buttons-wrapper">
+            <button mat-raised-button mat-dialog-close class="close-btn" matTooltip="Close"
+                matTooltip="Close"><mat-icon>close</mat-icon>Close</button>
+            <button mat-raised-button class="reject-btn" (click)="handleRejectTicket()"
+                *ngIf="(userType === 'admin' || userType === 'hradmin' || userType === 'hr') && ticketValues.status === 'open'"
+                matTooltip="Reject ticket"><mat-icon>cancel</mat-icon> Reject</button>
+            <button mat-raised-button cdkFocusInitial class="accept-btn"
+                *ngIf="(userType === 'admin' || userType === 'hradmin' || userType === 'hr') && ticketValues.status === 'open'"
+                (click)="handleTicketStatus('progress', 'Ticket Accepted')"
+                matTooltip="Accept ticket"><mat-icon>check</mat-icon>
+                Accept</button>
+            <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial class="close-tkt-btn"
+                *ngIf="(userType === 'admin' || userType === 'hradmin' || userType === 'hr') && ticketValues.status !== 'open' && ticketValues.status !== 'resolved' && ticketValues.status !== 'rejected'"
+                (click)="handleResolveTicket()" matTooltip="Resolve ticket"><mat-icon>check</mat-icon>
+                Resolve </button>
+        </div>
+    </div>
+</mat-dialog-actions>

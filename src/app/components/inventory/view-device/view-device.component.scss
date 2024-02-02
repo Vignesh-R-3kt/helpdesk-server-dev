@@ -1,0 +1,48 @@
+@import "../../../../custom_variables";
+
+.edit-btn {
+  background: $black !important;
+}
+
+.title {
+  margin: 0;
+
+  span {
+    font-weight: 700;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border: none;
+  width: 100%;
+
+  tbody {
+    tr {
+      &:nth-child(odd) {
+        td {
+          background: $bg;
+        }
+      }
+
+      td {
+        color: $black;
+        padding: rem(6) rem(18);
+        text-transform: capitalize;
+        border: rem(1) solid $grey;
+
+        &:first-child {
+          font-size: rem(14);
+        }
+
+        &:last-child {
+          font-weight: 600;
+          font-size: rem(17);
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+            sans-serif;
+        }
+      }
+    }
+  }
+}

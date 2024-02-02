@@ -1,0 +1,219 @@
+@import "../../../custom_variables";
+
+.container {
+  .wrapper {
+    .top-section {
+      display: flex;
+      justify-content: space-between;
+      margin-top: rem(8);
+      align-items: flex-end;
+
+      .new-ticket-btn {
+        color: $white;
+        background: $primary;
+        min-width: rem(250);
+      }
+    }
+  }
+}
+
+.image-view-popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: rem(8);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .overlay {
+    background: rgba($color: #000000, $alpha: 0.1);
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .popup-wrapper {
+    background: $white;
+    position: relative;
+    z-index: 2;
+    width: 70%;
+    height: 80%;
+    padding: rem(28) rem(24);
+    border-radius: rem(8);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(12);
+    animation: ticketView 0.4s ease forwards;
+
+    &::-webkit-scrollbar {
+      width: rem(6);
+
+      &-thumb {
+        background: $grey;
+        border-radius: rem(6);
+      }
+    }
+
+    .header {
+      margin-bottom: rem(14);
+      border-bottom: rem(1) solid $grey;
+      padding-bottom: rem(12);
+
+      p {
+        font-size: rem(22);
+        font-weight: 800;
+        text-transform: capitalize;
+
+        span {
+          font-weight: 500;
+          font-size: rem(20);
+        }
+      }
+    }
+
+    .ticket-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: rem(12);
+      width: 100%;
+      margin-bottom: rem(12);
+
+      .img-wrapper {
+        width: 50%;
+        margin-bottom: rem(18);
+
+        img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+          border-radius: rem(6);
+          box-shadow: rgba(0, 0, 0, 0.3) 1.95px 1.95px 2.6px;
+        }
+      }
+
+      p {
+        font-weight: 800;
+        font-size: rem(16);
+        text-transform: capitalize;
+        width: 100%;
+        text-align: left;
+        margin-bottom: rem(8);
+
+        span {
+          font-size: rem(15);
+          font-weight: 400;
+        }
+      }
+    }
+
+    .ticket-footer {
+      margin-top: auto;
+
+      button {
+        background: $primary;
+        color: $white;
+        padding: rem(6) rem(32);
+        border: none;
+        font-size: rem(16);
+        text-transform: capitalize;
+        border-radius: rem(6);
+      }
+    }
+  }
+}
+
+table {
+  tbody {
+    tr {
+      td {
+        text-align: left;
+
+        &.priority {
+          text-align: center;
+
+          span {
+            color: $white;
+            display: inline-block;
+            padding: rem(2) rem(8);
+            border-radius: rem(32);
+            min-width: rem(80);
+            font-size: rem(12);
+          }
+
+          &.high {
+            span {
+              background: $red;
+            }
+          }
+
+          &.medium {
+            span {
+              background: $orange;
+            }
+          }
+
+          &.low {
+            span {
+              background: $green;
+            }
+          }
+        }
+
+        p {
+          margin: 0;
+        }
+
+        &.highlight {
+          color: $primary;
+          font-weight: 700 !important;
+        }
+
+        &.ticket-number-cell {
+          padding-right: rem(20);
+
+          .content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: rem(8);
+
+            mat-icon {
+              color: $red;
+              cursor: pointer;
+
+              &:hover {
+                transform: scale(1.1);
+                transition: all 0.2s ease;
+              }
+            }
+
+            ::ng-deep {
+              .mat-badge-content {
+                background: $primary;
+                transform: translate(-4px, 2px);
+                border: rem(1) solid $white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes ticketView {
+  0% {
+    transform: scale(0.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,12 @@
+<div class="container">
+    <app-header></app-header>
+</div>
+<div class="container body-container">
+    <div class="navbar-wrapper">
+        <app-navbar></app-navbar>
+    </div>
+    <div class="content-wrapper">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<app-loader *ngIf="loader"></app-loader>

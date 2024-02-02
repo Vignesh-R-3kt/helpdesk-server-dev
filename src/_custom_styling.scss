@@ -1,0 +1,113 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+button,
+a,
+td,
+th,
+input,
+div,
+label {
+  font-family: "Nunito", sans-serif !important;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: $bg;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+// End of Global Styling
+
+app-dashboard,
+app-tickets,
+app-new-ticket,
+app-my-profile,
+app-inventory,
+app-service-request {
+  animation: reveal 0.5s ease forwards;
+  display: block;
+  height: 100%;
+}
+
+::selection {
+  background: $primary;
+  color: $white;
+}
+
+@keyframes reveal {
+  0% {
+    transform: translateX(rem(-12));
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.mdc-floating-label:not(.mdc-floating-label--float-above) {
+  mat-label {
+    color: $grey !important;
+  }
+}
+
+.mat-mdc-text-field-wrapper {
+  background: $white;
+}
+
+.mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background,
+.mdc-checkbox__ripple {
+  background-color: $primary !important;
+  border-color: $primary !important;
+}
+
+.mat-datepicker-popup {
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+.mat-mdc-select-panel {
+  .mat-mdc-option {
+    span {
+      text-transform: capitalize;
+    }
+  }
+}
+
+.mat-mdc-select {
+  text-transform: capitalize;
+}
+
+ngx-mat-timepicker-face {
+  display: flex;
+  justify-content: center;
+}

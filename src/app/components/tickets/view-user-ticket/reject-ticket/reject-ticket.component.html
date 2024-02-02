@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Reject Ticket No: {{ticketValue.ticketNo}}</h1>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="rejectFormData">
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Reason for Rejection </mat-label>
+            <textarea matInput rows="5" (input)="replaceDoubleSpaceInput($event)" (keypress)="removeEnterSpace($event)"
+                matTooltip="Enter reason for rejecting ticket" formControlName="reason"></textarea>
+            <mat-error
+                *ngIf="rejectFormData.controls['reason'].touched && rejectFormData.controls['reason'].hasError('required')">
+                Reason is required
+            </mat-error>
+            <mat-error
+                *ngIf="rejectFormData.controls['reason'].touched && rejectFormData.controls['reason'].hasError('minlength')">
+                Minimum 20 characters required
+            </mat-error>
+            <mat-error
+                *ngIf="rejectFormData.controls['reason'].touched && rejectFormData.controls['reason'].hasError('maxlength')">
+                Maximum 500 characters required
+            </mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close class="close-btn"
+        matTooltip="Cancel"><mat-icon>close</mat-icon>Cancel</button>
+    <button mat-raised-button class="reject-btn" [disabled]="!rejectFormData.valid" (click)="rejectTicket()"
+        matTooltip="Reject ticket"><mat-icon>close</mat-icon>Reject</button>
+</mat-dialog-actions>

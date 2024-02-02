@@ -1,0 +1,44 @@
+<div mat-dialog-title class="dialog-header">
+    <div class="content-wrapper">
+        <div class="left-side-content-wrapper">
+            <h3 class="mat-elevation-z1">Ticket No: <span>{{ticketDetails.ticketNo}}</span> - {{ticketDetails.status}}
+            </h3>
+            <button *ngIf="ticketDetails.status === 'open' || ticketDetails.status === 'progress'" mat-mini-fab
+                matTooltip="Refresh chat" class="refresh-btn" (click)="refreshChat()"><mat-icon>sync</mat-icon></button>
+        </div>
+        <button mat-raised-button mat-dialog-close class="close-btn"
+            matTooltip="Close"><mat-icon>close</mat-icon></button>
+    </div>
+</div>
+<mat-dialog-content #chatbox_popup_content_wrapper class="chatbox-popup-content-wrapper">
+    <div class="content-wrapper">
+        <ul class="chat-list-wrapper" *ngIf="ticketConversation && ticketConversation.length">
+            <li class="chat-item" *ngFor="let item of ticketConversation"
+                [ngClass]="{'self' :item.email === currentUser, 'others' : item.email !== currentUser}">
+                <span class="name" matTooltip="{{item.email !== currentUser ? item.email : ''}}">{{item.email ===
+                    currentUser ? "You" : item.name}}</span>
+                <p class="message">{{item.message}}</p>
+                <span class="time-stamp">{{item.timestamp | date:'medium'}}</span>
+            </li>
+        </ul>
+        <p class="empty-message" *ngIf="!ticketConversation || !ticketConversation?.length ">Space for addressing
+            ticket-related information
+            and queries.</p>
+    </div>
+    <p class="sending-message" *ngIf="loadingState">Sending...</p>
+</mat-dialog-content>
+<mat-dialog-actions class="chatbox-popup-actions-wrapper">
+    <form class="message-form-wrapper" [formGroup]="newMessageFormData" (submit)="fetchMessage()"
+        *ngIf="ticketDetails.status === 'open' || ticketDetails.status === 'progress'">
+        <mat-card>
+            <input type="text" placeholder="Enter Your message" maxlength="500" formControlName="message">
+        </mat-card>
+        <button mat-raised-button [disabled]="!newMessageFormData.valid || loadingState" type="submit" class="send-btn"
+            matTooltip="Send message"><span *ngIf="!loadingState">Send <mat-icon>send</mat-icon></span><mat-icon
+                *ngIf="loadingState" class="spinner-send-btn">sync</mat-icon></button>
+    </form>
+    <p class="message" *ngIf="ticketDetails.status === 'resolved' || ticketDetails.status === 'rejected'">
+        <mat-icon>info</mat-icon> Messaging
+        is not possible for tickets that are marked as RESOLVED / REJECTED.
+    </p>
+</mat-dialog-actions>

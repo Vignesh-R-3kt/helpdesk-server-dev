@@ -1,0 +1,48 @@
+@import "../../../../../custom_variables";
+
+.container {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: rem(48) rem(24) !important;
+
+  .message {
+    margin-bottom: rem(32);
+    color: $primary;
+    font-size: rem(22);
+    font-weight: 500;
+  }
+
+  .ticket-id {
+    font-size: rem(16);
+    text-transform: capitalize;
+    color: $black;
+
+    span {
+      font-weight: 700;
+      font-size: rem(18);
+    }
+  }
+}
+
+.close-btn {
+  border: rem(1) solid $grey;
+}
+
+.success-message-title {
+  font-size: rem(24);
+  color: $green;
+  font-weight: 700;
+}
+
+mat-icon {
+  width: unset;
+  font-size: rem(28);
+}

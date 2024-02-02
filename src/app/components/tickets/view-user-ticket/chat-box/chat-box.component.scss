@@ -1,0 +1,240 @@
+@import "../../../../../custom_variables";
+
+.dialog-header {
+  .content-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+      margin: 0;
+      background: $secondary;
+      color: $white;
+      padding: rem(4) rem(8);
+      border-radius: rem(6);
+      font-size: rem(14);
+      display: flex;
+      align-items: center;
+      gap: rem(4);
+
+      span {
+        font-size: rem(16);
+      }
+    }
+
+    .close-btn {
+      min-width: rem(40);
+      padding: 0;
+
+      mat-icon {
+        margin: 0;
+      }
+    }
+
+    .left-side-content-wrapper {
+      display: flex;
+      align-items: center;
+      gap: rem(8);
+
+      .refresh-btn {
+        border: rem(2) solid $green;
+        background: $white !important;
+        transform: scale(0.7);
+
+        &:not(:hover) {
+          box-shadow: none;
+        }
+
+        mat-icon {
+          color: $green;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .chatbox-popup {
+    max-width: 65vw !important;
+  }
+}
+
+.chatbox-popup-actions-wrapper {
+  .message-form-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: rem(12);
+
+    mat-card {
+      flex-grow: 1;
+
+      input {
+        padding: rem(6) rem(8);
+        border: rem(1) solid $grey;
+        border-radius: rem(4);
+        font-size: rem(16);
+
+        &::placeholder {
+          font-size: rem(13);
+          color: $grey;
+        }
+      }
+    }
+
+    .send-btn {
+      width: rem(92);
+      height: rem(32);
+
+      span {
+        display: flex;
+        align-items: center;
+        gap: rem(8);
+      }
+
+      &:disabled {
+        background: $grey !important;
+        color: $white !important;
+        pointer-events: none !important;
+      }
+
+      .spinner-send-btn {
+        animation: rotate 2.5s ease infinite;
+        margin: 0;
+      }
+    }
+  }
+
+  ::ng-deep {
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none !important;
+    }
+  }
+
+  .message {
+    width: 100%;
+    margin: 0;
+    color: $grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(12);
+  }
+}
+
+.chatbox-popup-content-wrapper {
+  background: $bg;
+  scroll-behavior: smooth;
+  min-height: 40vh;
+
+  .content-wrapper {
+    padding: rem(24) 0;
+
+    .chat-list-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: rem(6);
+
+      .chat-item {
+        max-width: 75%;
+        display: flex;
+        flex-direction: column;
+
+        .name {
+          font-size: rem(12);
+          font-weight: 700;
+          cursor: default;
+          color: $black;
+        }
+
+        .message {
+          font-size: rem(15);
+          margin: 0;
+          background: red;
+          padding: rem(8) rem(12);
+          font-weight: 500;
+          color: $black;
+          margin-top: rem(4);
+          box-shadow: $box-shadow;
+        }
+
+        .time-stamp {
+          font-size: rem(10);
+          color: $black;
+        }
+
+        &.self {
+          align-self: flex-end;
+
+          .name {
+            align-self: flex-end;
+          }
+
+          .message {
+            background: $secondary;
+            color: $white;
+            margin-right: rem(8);
+            border-radius: rem(8) 0 rem(8) rem(8);
+          }
+          .time-stamp {
+            margin-right: rem(20);
+            align-self: flex-end;
+          }
+        }
+
+        &.others {
+          align-self: flex-start;
+
+          .name {
+            align-self: flex-start;
+          }
+
+          .message {
+            background: $white;
+            border-radius: 0 rem(8) rem(8) rem(8);
+            margin-left: rem(8);
+          }
+
+          .time-stamp {
+            margin-left: rem(20);
+            align-self: flex-start;
+          }
+        }
+      }
+    }
+
+    .empty-message {
+      color: $grey;
+      text-align: center;
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+
+  .sending-message {
+    width: 100%;
+    text-align: end;
+    font-size: rem(14);
+    animation: breathe 1s ease infinite alternate-reverse;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes breathe {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="wrapper">
+        <h1 mat-dialog-title class="success-message-title"><mat-icon>done_all</mat-icon> Success</h1>
+        <div mat-dialog-content class="success-message">
+            <p class="message">Ticket Submitted Successfully.</p>
+            <p class="ticket-id">Ticket Id: <span>{{ successResponse.ticketNo }}</span></p>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button (click)="redirectToTickets()" matTooltip="Close"
+                class="close-btn"><mat-icon>close</mat-icon>Close</button>
+        </div>
+    </div>
+</div>

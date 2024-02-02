@@ -1,0 +1,211 @@
+<div class="add-device-wrapper">
+    <h2 mat-dialog-title>Add New Device</h2>
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="deviceForm">
+            <div class="category-date-wrapper">
+                <mat-form-field appearance="outline">
+                    <mat-label>Device Type</mat-label>
+                    <mat-select value="laptop" (selectionChange)="updateNewDeviceType($event)">
+                        <mat-option value="laptop">Laptop</mat-option>
+                        <mat-option value="mobile">Mobile / Others</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="date-picker-wrapper">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Date</mat-label>
+                        <input matInput [value]="today" disabled>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="device-information">
+                <mat-form-field appearance="outline">
+                    <mat-label>Make</mat-label>
+                    <input type="text" formControlName="make" (input)="replaceAllWhiteSpace($event)" maxlength="255"
+                        matInput title="make">
+                    <mat-error
+                        *ngIf="deviceForm.controls['make'].touched && deviceForm.controls['make'].dirty && deviceForm.controls['make'].errors?.['required']">
+                        Required
+                    </mat-error>
+                    <mat-error
+                        *ngIf="deviceForm.controls['make'].touched && deviceForm.controls['make'].dirty && deviceForm.controls['make'].errors?.['minlength']">
+                        Minimum 2 characters required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Model</mat-label>
+                    <input type="text" formControlName="model" (input)="replaceAllWhiteSpace($event)" maxlength="255"
+                        matInput title="model">
+                    <mat-error
+                        *ngIf="deviceForm.controls['model'].touched && deviceForm.controls['model'].dirty && deviceForm.controls['model'].errors?.['required']">
+                        Required
+                    </mat-error>
+                    <mat-error
+                        *ngIf="deviceForm.controls['model'].touched && deviceForm.controls['model'].dirty && deviceForm.controls['model'].errors?.['minlength']">
+                        Minimum 2 characters required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Serial No</mat-label>
+                    <input type="text" formControlName="serialNo" (input)="replaceAllWhiteSpace($event)" maxlength="255"
+                        matInput title="serial Number">
+                    <mat-error
+                        *ngIf="deviceForm.controls['serialNo'].touched && deviceForm.controls['serialNo'].dirty && deviceForm.controls['serialNo'].errors?.['required']">
+                        Required
+                    </mat-error>
+                    <mat-error
+                        *ngIf="deviceForm.controls['serialNo'].touched && deviceForm.controls['serialNo'].dirty && deviceForm.controls['serialNo'].errors?.['minlength']">
+                        Minimum 2 characters required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" *ngIf="newDeviceType === 'laptop'">
+                    <mat-label>Processor</mat-label>
+                    <input type="text" formControlName="processor" (input)="replaceAllWhiteSpace($event)"
+                        maxlength="255" matInput title="Processor">
+                    <mat-error
+                        *ngIf="deviceForm.controls['processor'].touched && deviceForm.controls['processor'].dirty && deviceForm.controls['processor'].errors?.['required']">
+                        Required
+                    </mat-error>
+                    <mat-error
+                        *ngIf="deviceForm.controls['processor'].touched && deviceForm.controls['processor'].dirty && deviceForm.controls['processor'].errors?.['minlength']">
+                        Minimum 2 characters required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" *ngIf="newDeviceType === 'laptop'">
+                    <mat-label>RAM Size(in GB)</mat-label>
+                    <input type="number" formControlName="ramSize" (input)="preventNumberField($event)" matInput
+                        title="Ram Size">
+                    <mat-error
+                        *ngIf="deviceForm.controls['ramSize'].touched && deviceForm.controls['ramSize'].dirty && deviceForm.controls['ramSize'].errors?.['required']">
+                        Required Valid Input
+                    </mat-error>
+                    <mat-error
+                        *ngIf="deviceForm.controls['ramSize'].touched && deviceForm.controls['ramSize'].dirty && deviceForm.controls['ramSize'].errors?.['max'] || deviceForm.controls['ramSize'].errors?.['min']">
+                        Invalid RAM Size
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" *ngIf="newDeviceType === 'laptop'">
+                    <mat-label>HDD Size(in GB)</mat-label>
+                    <input type="number" formControlName="storageSize" (input)="preventNumberField($event)" matInput
+                        title="HDD Size">
+                    <mat-error
+                        *ngIf="deviceForm.controls['storageSize'].touched && deviceForm.controls['storageSize'].dirty && deviceForm.controls['storageSize'].errors?.['required']">
+                        Required Valid Input
+                    </mat-error>
+                    <mat-error
+                        *ngIf="deviceForm.controls['storageSize'].touched && deviceForm.controls['storageSize'].dirty && deviceForm.controls['storageSize'].errors?.['max'] || deviceForm.controls['storageSize'].errors?.['min']">
+                        Invalid HDD Size
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Asset Tag ID</mat-label>
+                    <input type="text" formControlName="assetTagId" (input)="replaceAllWhiteSpace($event)"
+                        maxlength="255" matInput title="Asset Tag ID">
+                    <mat-error
+                        *ngIf="deviceForm.controls['assetTagId'].touched && deviceForm.controls['assetTagId'].dirty && deviceForm.controls['assetTagId'].errors?.['required']">
+                        Required
+                    </mat-error>
+                    <mat-error
+                        *ngIf="deviceForm.controls['assetTagId'].touched && deviceForm.controls['assetTagId'].dirty && deviceForm.controls['assetTagId'].errors?.['minlength']">
+                        Minimum 2 characters required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Warranty</mat-label>
+                    <input type="text" formControlName="warranty" (input)="replaceAllWhiteSpace($event)" maxlength="255"
+                        matInput title="Warranty">
+                    <mat-error
+                        *ngIf="deviceForm.controls['warranty'].touched && deviceForm.controls['warranty'].dirty && deviceForm.controls['warranty'].errors?.['required']">
+                        Required
+                    </mat-error>
+                    <mat-error
+                        *ngIf="deviceForm.controls['warranty'].touched && deviceForm.controls['warranty'].dirty && deviceForm.controls['warranty'].errors?.['minlength']">
+                        Minimum 2 characters required
+                    </mat-error>
+                </mat-form-field>
+                <div class="previous-user-info">
+                    <div class="checkbox-wrapper">
+                        <mat-checkbox (change)="togglePreviousUserData($event)" formControlName="assigned">Device
+                            Assigned</mat-checkbox>
+                    </div>
+                    <div class="prev-user-info" *ngIf="deviceAssigned">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Employee Name</mat-label>
+                            <input type="text" formControlName="employeeName" (input)="replaceAllWhiteSpace($event)"
+                                maxlength="255" matInput title="Previous User Name">
+                            <mat-error
+                                *ngIf="deviceForm.controls['employeeName'].touched && deviceForm.controls['employeeName'].dirty && deviceForm.controls['employeeName'].errors?.['required']">
+                                Required
+                            </mat-error>
+                            <mat-error
+                                *ngIf="deviceForm.controls['employeeName'].touched && deviceForm.controls['employeeName'].dirty && deviceForm.controls['employeeName'].errors?.['minlength']">
+                                Minimum 2 characters required
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Employee ID / Email</mat-label>
+                            <input type="text" formControlName="employeeId" (input)="replaceAllWhiteSpace($event)"
+                                maxlength="255" matInput title="Previous ID / Name">
+                            <mat-error
+                                *ngIf="deviceForm.controls['employeeId'].touched && deviceForm.controls['employeeId'].dirty && deviceForm.controls['employeeId'].errors?.['required']">
+                                Required
+                            </mat-error>
+                            <mat-error
+                                *ngIf="deviceForm.controls['employeeId'].touched && deviceForm.controls['employeeId'].dirty && deviceForm.controls['employeeId'].errors?.['minlength']">
+                                Minimum 2 characters required
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Agreement</mat-label>
+                            <mat-select formControlName="agreement">
+                                <mat-option [value]="true">
+                                    Yes
+                                </mat-option>
+                                <mat-option [value]="false">
+                                    No
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="return-date" appearance="outline" *ngIf="newDeviceType === 'mobile'">
+                            <mat-label>Expected Device Return Date</mat-label>
+                            <input matInput [matDatepicker]="expectedReturn" formControlName="expectedReturnDate"
+                                readonly [min]="today">
+                            <mat-datepicker-toggle matIconSuffix [for]="expectedReturn">
+                                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #expectedReturn></mat-datepicker>
+                            <mat-error
+                                *ngIf="deviceForm.controls['expectedReturnDate'].touched && deviceForm.controls['expectedReturnDate'].dirty && deviceForm.controls['expectedReturnDate'].errors?.['required']">
+                                Required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="attachments-wrapper">
+                    <label class="label">Attachment : (File Types: jpg, jpeg, png, webp, pdf)</label>
+                    <div class="file-input-wrapper">
+                        <label><mat-icon fontIcon="attach_file"></mat-icon><input class="btn1"
+                                accept="image/png, image/jpeg, image/jpg, image/webp, application/pdf"
+                                (change)="updateAttachementFile($event)" (click)="clearFileInput()"
+                                formControlName="file" type="file"></label>
+                        <button type="button" *ngIf="deviceForm.get('file')?.value" class="clear-btn"
+                            (click)="clearFileInput()" title="clear-field">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <mat-form-field appearance="outline" class="additional-comments">
+                    <mat-label>Additional Details: </mat-label>
+                    <textarea matInput rows="5"
+                        placeholder="Enter additional accessories details / device damage details if any / other remarks"
+                        formControlName="additionalDetails" (input)="replaceAllWhiteSpace($event)"
+                        maxlength="500"></textarea>
+                </mat-form-field>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button mat-dialog-close><mat-icon>close</mat-icon>Close</button>
+        <button mat-raised-button color="primary" class="submit-btn" (click)="submitForm()"
+            [disabled]="!deviceForm.valid"><mat-icon>send</mat-icon>Submit</button>
+    </mat-dialog-actions>
+</div>

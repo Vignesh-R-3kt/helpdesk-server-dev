@@ -1,0 +1,31 @@
+:root {
+  --color-primary: #2379dc;
+  --color-secondary: #3e5977;
+  --color-bg: #f4f5f9;
+  --color-grey: #b5b3b3;
+  --color-white: #ffffff;
+  --color-black: #1f1f1f;
+  --color-red: #db303f;
+  --color-green: #61ba61;
+  --color-orange: #db8c28;
+  --color-brown: #520412;
+}
+
+$primary: var(--color-primary);
+$secondary: var(--color-secondary);
+$white: var(--color-white);
+$black: var(--color-black);
+$grey: var(--color-grey);
+$bg: var(--color-bg);
+$red: var(--color-red);
+$green: var(--color-green);
+$orange: var(--color-orange);
+$brown: var(--color-brown);
+
+$box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+  0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+@function rem($pixels) {
+  $rem: calc($pixels / 16);
+  @return $rem + rem;
+}

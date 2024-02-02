@@ -1,0 +1,153 @@
+<div mat-dialog-title>
+    <h2 class="title">
+        Device details
+    </h2>
+</div>
+<mat-dialog-content class="mat-typography">
+    <table>
+        <tbody>
+            <tr>
+                <td width="30%">
+                    Device Type:
+                </td>
+                <td width="70%">
+                    {{ dialogData.device_type }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Device Assigned:
+                </td>
+                <td>
+                    {{ dialogData.assigned ? 'Yes' : 'No'}}
+                </td>
+            </tr>
+            <tr *ngIf="dialogData.assigned">
+                <td>
+                    Employee Name:
+                </td>
+                <td>
+                    {{ dialogData.employee_name }}
+                </td>
+            </tr>
+            <tr *ngIf="dialogData.assigned">
+                <td>
+                    Employee ID / Email:
+                </td>
+                <td style="text-transform: lowercase;">
+                    {{ dialogData.employee_id }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Make:
+                </td>
+                <td>
+                    {{ dialogData.make }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Model:
+                </td>
+                <td>
+                    {{ dialogData.model }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Serial Number:
+                </td>
+                <td>
+                    {{ dialogData.serial_no }}
+                </td>
+            </tr>
+            <tr *ngIf="dialogData.device_type === 'laptop'">
+                <td>
+                    Processor:
+                </td>
+                <td style="text-transform: unset;">
+                    {{ dialogData.processor }}
+                </td>
+            </tr>
+            <tr *ngIf="dialogData.device_type === 'laptop'">
+                <td>
+                    Ram (in GB):
+                </td>
+                <td>
+                    {{ dialogData.ram_size }} GB
+                </td>
+            </tr>
+            <tr *ngIf="dialogData.device_type === 'laptop'">
+                <td>
+                    HDD (in GB):
+                </td>
+                <td>
+                    {{ dialogData.storage_size }} GB
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Asset Tag ID:
+                </td>
+                <td>
+                    {{ dialogData.asset_tag_id }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Warranty:
+                </td>
+                <td>
+                    {{ dialogData.warranty }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Agreement:
+                </td>
+                <td>
+                    {{ dialogData.agreement === 'true' ? 'Yes' : 'No' }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Additional Details:
+                </td>
+                <td style="text-transform: none;">
+                    {{ dialogData.additional_details || '***'}}
+                </td>
+            </tr>
+            <tr *ngIf="dialogData.last_updated_date">
+                <td>
+                    Device details updated on:
+                </td>
+                <td>
+                    {{ dialogData.last_updated_date}}
+                </td>
+            </tr>
+            <tr *ngIf="dialogData.expected_return_date">
+                <td>
+                    Expected device return date:
+                </td>
+                <td>
+                    {{ dialogData.expected_return_date}}
+                </td>
+            </tr>
+            <tr *ngIf="dialogData.attachment">
+                <td>
+                    Attachment:
+                </td>
+                <td style="text-transform: unset;">
+                    <a matTooltip="Download attachment" [href]="dialogData.attachment" target="_blank"
+                        mat-raised-button>Download <mat-icon>cloud_download</mat-icon></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close matTooltip="Close"><mat-icon>close</mat-icon>Close</button>
+    <button mat-raised-button class="edit-btn" (click)="openEditDialog()"
+        matTooltip="Edit device details"><mat-icon>edit</mat-icon>Edit</button>
+</mat-dialog-actions>
