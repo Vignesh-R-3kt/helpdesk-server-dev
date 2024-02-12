@@ -12,8 +12,7 @@
                     <mat-option value="rejected">Rejected</mat-option>
                 </mat-select>
             </mat-form-field>
-            <div class="download-btn-wrapper"
-                *ngIf="(userRoleType === 'admin' || userRoleType === 'hr'  || userRoleType === 'hradmin') && (userEmail === 'vignesh.r@3ktechnologies.com' || userEmail === 'ajay.s@3ktechnologies.com' || userEmail === 'vishal.m@3ktechnologies.com')">
+            <div class="download-btn-wrapper" *ngIf="userRoleType === 'admin' || userRoleType === 'hr'">
                 <button mat-raised-button matTooltip="Download comprehensive data dump containing all tickets data"
                     (click)="handleDownloadArchieve()"><mat-icon>attachment</mat-icon>Download
                     archive </button>
