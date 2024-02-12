@@ -3,7 +3,8 @@
     <form [formGroup]="employeeForm">
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Name</mat-label>
-            <input type="text" maxlength="255" matInput formControlName="name" (input)="replaceAllWhiteSpace($event)">
+            <input matTooltip="Enter name" type="text" maxlength="255" matInput formControlName="name"
+                (input)="replaceAllWhiteSpace($event)">
             <mat-error
                 *ngIf="employeeForm.controls['name'].touched && employeeForm.controls['name'].dirty && employeeForm.controls['name'].errors?.['required']">
                 Required
@@ -15,7 +16,8 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Email Id</mat-label>
-            <input type="email" matInput formControlName="email" (input)="replaceAllWhiteSpace($event)">
+            <input matTooltip="Enter Email Id" type="email" matInput formControlName="email"
+                (input)="replaceAllWhiteSpace($event)">
             <mat-error
                 *ngIf="employeeForm.controls['email'].touched && employeeForm.controls['email'].dirty && employeeForm.controls['email'].errors?.['required']">
                 Required
@@ -27,7 +29,7 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Employee ID</mat-label>
-            <input type="text" maxlength="255" matInput formControlName="employeeId"
+            <input matTooltip="Enter Employee ID" type="text" maxlength="255" matInput formControlName="employeeId"
                 (input)="replaceAllWhiteSpace($event)">
             <mat-error
                 *ngIf="employeeForm.controls['employeeId'].touched && employeeForm.controls['employeeId'].dirty && employeeForm.controls['employeeId'].errors?.['required']">
@@ -40,7 +42,7 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Designation</mat-label>
-            <input type="text" maxlength="255" matInput formControlName="designation"
+            <input matTooltip="Enter Designation" type="text" maxlength="255" matInput formControlName="designation"
                 (input)="replaceAllWhiteSpace($event)">
             <mat-error
                 *ngIf="employeeForm.controls['designation'].touched && employeeForm.controls['designation'].dirty && employeeForm.controls['designation'].errors?.['required']">
@@ -53,7 +55,8 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Years of Experience</mat-label>
-            <input type="number" matInput formControlName="experience" (input)="replaceAllWhiteSpace($event)">
+            <input matTooltip="Enter Years of Experience" type="number" matInput formControlName="experience"
+                (input)="replaceAllWhiteSpace($event)">
             <mat-error
                 *ngIf="employeeForm.controls['experience'].touched && employeeForm.controls['experience'].dirty && employeeForm.controls['experience'].errors?.['required']">
                 Required
@@ -65,8 +68,8 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Reporting Manager</mat-label>
-            <input type="text" maxlength="255" matInput formControlName="reportingManager"
-                (input)="replaceAllWhiteSpace($event)">
+            <input matTooltip="Enter Reporting Manager" type="text" maxlength="255" matInput
+                formControlName="reportingManager" (input)="replaceAllWhiteSpace($event)">
             <mat-error
                 *ngIf="employeeForm.controls['reportingManager'].touched && employeeForm.controls['reportingManager'].dirty && employeeForm.controls['reportingManager'].errors?.['required']">
                 Required
@@ -78,7 +81,8 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Phone</mat-label>
-            <input type="number" matInput formControlName="mobileNumber" (input)="replaceAllWhiteSpace($event)">
+            <input matTooltip="Enter Mobile Number" type="number" matInput formControlName="mobileNumber"
+                (input)="replaceAllWhiteSpace($event)">
             <mat-error
                 *ngIf="employeeForm.controls['mobileNumber'].touched && employeeForm.controls['mobileNumber'].dirty && employeeForm.controls['mobileNumber'].errors?.['required']">
                 Required
@@ -90,7 +94,7 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Project</mat-label>
-            <input type="text" maxlength="255" matInput formControlName="project"
+            <input matTooltip="Enter Project" type="text" maxlength="255" matInput formControlName="project"
                 (input)="replaceAllWhiteSpace($event)">
             <mat-error
                 *ngIf="employeeForm.controls['project'].touched && employeeForm.controls['project'].dirty && employeeForm.controls['project'].errors?.['required']">
@@ -103,7 +107,8 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Skills</mat-label>
-            <input type="text" maxlength="255" matInput formControlName="skills" (input)="replaceAllWhiteSpace($event)">
+            <input matTooltip="Enter Skills" type="text" maxlength="255" matInput formControlName="skills"
+                (input)="replaceAllWhiteSpace($event)">
         </mat-form-field>
     </form>
     <div class="delete-container" *ngIf="deleteState">
