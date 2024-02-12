@@ -4,38 +4,102 @@
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Name</mat-label>
             <input type="text" maxlength="255" matInput formControlName="name" (input)="replaceAllWhiteSpace($event)">
+            <mat-error
+                *ngIf="employeeForm.controls['name'].touched && employeeForm.controls['name'].dirty && employeeForm.controls['name'].errors?.['required']">
+                Required
+            </mat-error>
+            <mat-error
+                *ngIf="employeeForm.controls['name'].touched && employeeForm.controls['name'].dirty && employeeForm.controls['name'].errors?.['minlength']">
+                Minimum 3 characters required
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Email Id</mat-label>
             <input type="email" matInput formControlName="email" (input)="replaceAllWhiteSpace($event)">
+            <mat-error
+                *ngIf="employeeForm.controls['email'].touched && employeeForm.controls['email'].dirty && employeeForm.controls['email'].errors?.['required']">
+                Required
+            </mat-error>
+            <mat-error
+                *ngIf="employeeForm.controls['email'].touched && employeeForm.controls['email'].dirty && employeeForm.controls['email'].errors?.['email']">
+                Invalid email address
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Employee ID</mat-label>
             <input type="text" maxlength="255" matInput formControlName="employeeId"
                 (input)="replaceAllWhiteSpace($event)">
+            <mat-error
+                *ngIf="employeeForm.controls['employeeId'].touched && employeeForm.controls['employeeId'].dirty && employeeForm.controls['employeeId'].errors?.['required']">
+                Required
+            </mat-error>
+            <mat-error
+                *ngIf="employeeForm.controls['employeeId'].touched && employeeForm.controls['employeeId'].dirty && employeeForm.controls['employeeId'].errors?.['minlength']">
+                Minimum 3 characters required
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Designation</mat-label>
             <input type="text" maxlength="255" matInput formControlName="designation"
                 (input)="replaceAllWhiteSpace($event)">
+            <mat-error
+                *ngIf="employeeForm.controls['designation'].touched && employeeForm.controls['designation'].dirty && employeeForm.controls['designation'].errors?.['required']">
+                Required
+            </mat-error>
+            <mat-error
+                *ngIf="employeeForm.controls['designation'].touched && employeeForm.controls['designation'].dirty && employeeForm.controls['designation'].errors?.['minlength']">
+                Minimum 3 characters required
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Years of Experience</mat-label>
             <input type="number" matInput formControlName="experience" (input)="replaceAllWhiteSpace($event)">
+            <mat-error
+                *ngIf="employeeForm.controls['experience'].touched && employeeForm.controls['experience'].dirty && employeeForm.controls['experience'].errors?.['required']">
+                Required
+            </mat-error>
+            <mat-error
+                *ngIf="employeeForm.controls['experience'].touched && employeeForm.controls['experience'].dirty && employeeForm.controls['experience'].errors?.['max']">
+                Minimum 30 Years of experience
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Reporting Manager</mat-label>
             <input type="text" maxlength="255" matInput formControlName="reportingManager"
                 (input)="replaceAllWhiteSpace($event)">
+            <mat-error
+                *ngIf="employeeForm.controls['reportingManager'].touched && employeeForm.controls['reportingManager'].dirty && employeeForm.controls['reportingManager'].errors?.['required']">
+                Required
+            </mat-error>
+            <mat-error
+                *ngIf="employeeForm.controls['reportingManager'].touched && employeeForm.controls['reportingManager'].dirty && employeeForm.controls['reportingManager'].errors?.['minlength']">
+                Minimum 3 characters required
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Phone</mat-label>
             <input type="number" matInput formControlName="mobileNumber" (input)="replaceAllWhiteSpace($event)">
+            <mat-error
+                *ngIf="employeeForm.controls['mobileNumber'].touched && employeeForm.controls['mobileNumber'].dirty && employeeForm.controls['mobileNumber'].errors?.['required']">
+                Required
+            </mat-error>
+            <mat-error
+                *ngIf="employeeForm.controls['mobileNumber'].touched && employeeForm.controls['mobileNumber'].dirty && employeeForm.controls['mobileNumber'].errors && !employeeForm.controls['mobileNumber'].errors?.['required']">
+                Invalid phone number
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Project</mat-label>
             <input type="text" maxlength="255" matInput formControlName="project"
                 (input)="replaceAllWhiteSpace($event)">
+            <mat-error
+                *ngIf="employeeForm.controls['project'].touched && employeeForm.controls['project'].dirty && employeeForm.controls['project'].errors?.['required']">
+                Required
+            </mat-error>
+            <mat-error
+                *ngIf="employeeForm.controls['project'].touched && employeeForm.controls['project'].dirty && employeeForm.controls['project'].errors?.['minlength']">
+                Minimum 3 characters required
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Skills</mat-label>

@@ -65,37 +65,39 @@
 
       .teams-wrapper {
         margin-top: rem(24);
-        display: flex;
-        justify-content: flex-end;
-        gap: rem(8);
-        align-items: center;
 
-        p {
-          margin: 0;
-          font-size: rem(16);
-          font-weight: 500;
-          color: $grey;
-        }
-
-        a {
-          border-radius: 50%;
-          display: inline-block;
-          width: rem(60);
-          height: rem(60);
+        .content-wrapper {
           display: flex;
-          justify-content: center;
+          justify-content: flex-end;
+          gap: rem(8);
           align-items: center;
-          background: $white;
-
-          &:hover {
-            border: rem(1) solid $grey;
-            animation: pulse-animation 1.5s infinite;
+          p {
+            margin: 0;
+            font-size: rem(16);
+            font-weight: 500;
+            color: $grey;
           }
 
-          img {
-            width: rem(50);
-            height: rem(50);
-            object-fit: contain;
+          a {
+            border-radius: 50%;
+            display: inline-block;
+            width: rem(60);
+            height: rem(60);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: $white;
+
+            &:hover {
+              border: rem(1) solid $grey;
+              animation: pulse-animation 1.5s infinite;
+            }
+
+            img {
+              width: rem(50);
+              height: rem(50);
+              object-fit: contain;
+            }
           }
         }
       }

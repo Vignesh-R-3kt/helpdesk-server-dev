@@ -15,13 +15,15 @@
             <button mat-icon-button *ngIf="userType === 'admin' || userType === 'hr' || userType === 'hradmin'"
                 matTooltip="Edit employee details" (click)="openAddEmployeeDialog(employeeDetails)"
                 class="mat-elevation-z4"><mat-icon>edit</mat-icon></button>
-            <div class=" teams-wrapper">
-                <p>Connect :</p>
-                <a matTooltip="Open contact in teams"
-                    href="https://teams.microsoft.com/l/chat/0/0?users={{employeeDetails.email}}"
-                    class="mat-elevation-z3" target="_blank">
-                    <img src="../../../assets/icons/icons8-teams-96.png" alt="teams-icon">
-                </a>
+            <div class="teams-wrapper">
+                <div class="content-wrapper" *ngIf="employeeDetails.email !== userEmail">
+                    <p>Connect :</p>
+                    <a matTooltip="Open contact in teams"
+                        href="https://teams.microsoft.com/l/chat/0/0?users={{employeeDetails.email}}"
+                        class="mat-elevation-z3" target="_blank">
+                        <img src="../../../assets/icons/icons8-teams-96.png" alt="teams-icon">
+                    </a>
+                </div>
             </div>
         </div>
         <table>

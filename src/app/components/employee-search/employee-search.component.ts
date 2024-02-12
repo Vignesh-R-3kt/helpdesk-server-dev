@@ -12,6 +12,7 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
 export class EmployeeSearchComponent implements OnInit {
   employeeDetails: any = null;
   userType: string;
+  userEmail: string;
 
   constructor(
     private dialog: MatDialog,
@@ -20,6 +21,7 @@ export class EmployeeSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.userType = this.userTypeService.getUserType();
+    this.userEmail = this.userTypeService.getUserEmailId();
   }
 
   openAddEmployeeDialog(data: any = "") {
