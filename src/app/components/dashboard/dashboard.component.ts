@@ -6,6 +6,7 @@ import { LoaderService } from 'src/app/services/loader.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { TabTypeService } from 'src/app/services/tab-type.service';
 import { UnauthorizedComponent } from '../unauthorized/unauthorized.component';
+import { UserTypeService } from 'src/app/services/user-type.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +20,7 @@ export class DashboardComponent implements OnInit {
   waitingCount: any = 0;
   progressCount: any = 0;
   rejectedCount: any = 0;
+  userTypeName: string;
 
   constructor(
     private tabType: TabTypeService,
@@ -26,11 +28,13 @@ export class DashboardComponent implements OnInit {
     private http: ApiService,
     private loader: LoaderService,
     private snackbar: SnackbarService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userType: UserTypeService
   ) { }
 
   ngOnInit(): void {
     this.loader.show();
+    this.userTypeName = this.userType.getUserType();
     this.http.fetchAllTickets().subscribe((res: any) => {
       this.loader.hide();
       this.calculateTicketsCount(res);

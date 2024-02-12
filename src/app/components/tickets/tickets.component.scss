@@ -13,6 +13,13 @@
         background: $primary;
         min-width: rem(250);
       }
+
+      .download-btn-wrapper {
+        button {
+          background: $green;
+          color: $white;
+        }
+      }
     }
   }
 }

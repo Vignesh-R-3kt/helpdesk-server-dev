@@ -1,0 +1,101 @@
+@import "../../../../custom_variables";
+
+.dialog-content {
+  position: relative;
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(8);
+
+    mat-form-field {
+      width: calc(33.333333% - 6px);
+    }
+  }
+
+  .delete-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+
+    .content-wrapper {
+      background: $white;
+      padding: rem(24) rem(36);
+      border: rem(1) solid $grey;
+      border-radius: rem(8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: reveal 0.4s ease forwards;
+
+      mat-icon {
+        font-size: rem(40);
+        width: unset;
+        height: unset;
+        color: $red;
+        margin-bottom: rem(12);
+      }
+
+      p {
+        font-size: rem(24);
+      }
+
+      span {
+        font-size: rem(16);
+      }
+
+      .btns-wrapper {
+        margin-top: rem(16);
+
+        button {
+          &:first-child {
+            margin-right: rem(12);
+          }
+
+          &:last-child {
+            background: $red;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dialog-footer {
+  .submit-btn {
+    background: $green;
+    color: $white;
+
+    &:disabled {
+      background: $grey;
+    }
+  }
+
+  .delete-btn {
+    background: $red;
+    color: $white;
+  }
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

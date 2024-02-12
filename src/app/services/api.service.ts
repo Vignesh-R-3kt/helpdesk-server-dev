@@ -1,3 +1,4 @@
+import { data } from 'jquery';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,7 +8,10 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  private baseUrl: string = 'http://172.16.50.102:8080';
+  // private baseUrl: string = 'http://localhost:8080'; //localhost
+  private baseUrl: string = 'http://172.16.50.102:8080'; //local server
+  // private baseUrl: string = 'http://192.168.1.104:8080'; // Ajay Local host
+
 
   constructor(private http: HttpClient) { }
 
@@ -81,5 +85,35 @@ export class ApiService {
   // Method to send service request mail
   sendServiceRequestMail(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/helpdesk/service-mail`, data);
+  }
+
+  // Method to download 
+  downloadTicketsArchieve() {
+    return this.http.get(`${this.baseUrl}/api/tickets/download-archive`);
+  }
+
+  // Method to get employee search results
+  searchEmployeeList(data: string) {
+    return this.http.get(`${this.baseUrl}/api/employee-data/search-result?q=${data}`);
+  }
+
+  // Get employee details
+  getEmployeeDetails() {
+    return this.http.get(`${this.baseUrl}/api/employee-data/employee`);
+  }
+
+  // Add new employee
+  addNewEmployee(data: any) {
+    return this.http.post(`${this.baseUrl}/api/employee-data/employee`, data);
+  }
+
+  // Update employee details
+  updateEmployeeDetails(data: any, id: number) {
+    return this.http.put(`${this.baseUrl}/api/employee-data/employee/${id}`, data);
+  }
+
+  // Delete employee details
+  deleteEmployeeDetails(id: number) {
+    return this.http.delete(`${this.baseUrl}/api/employee-data/employee/${id}`);
   }
 }

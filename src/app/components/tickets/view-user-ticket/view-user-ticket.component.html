@@ -1,4 +1,7 @@
-<h1 mat-dialog-title>Ticket ID: <span>{{ticketValues.ticketNo}}</span></h1>
+<h1 mat-dialog-title class="ticket-header-title"><img src="../../../../assets/icons/icons8-ticket-100.png"
+        alt="ticket-icon"> Ticket ID:
+    <span>{{ticketValues.ticketNo}}</span>
+</h1>
 <mat-dialog-content class="mat-typography">
     <div class="ticket-body">
         <table>
@@ -72,7 +75,8 @@
         <div class="chat-btn-wrapper">
             <button mat-raised-button class="chat-btn" matTooltip="Ticket discussion"
                 matBadge="{{ticketValues.unreadMsgCount > 0 ? ticketValues.unreadMsgCount : ''}}" matBadgeSize="small"
-                (click)="handleChatBox()">
+                (click)="handleChatBox()"
+                [disabled]="(ticketValues.ticketOwnerRole === 'admin' && ticketValues.category !== 'hr related issue') || (ticketValues.ticketOwnerRole === 'hr' && ticketValues.category === 'hr related issue')">
                 <mat-icon>chat</mat-icon>
                 <span>Ticket Discussion</span>
             </button>

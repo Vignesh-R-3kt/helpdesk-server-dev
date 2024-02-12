@@ -47,7 +47,8 @@
             </li>
             <li (click)="redirectToTicketsPage('resolved')" [ngClass]="{'disabled': resolvedCount === '00'}">
                 <div class="title">
-                    <h3>Resolved</h3>
+                    <h3>Resolved <span *ngIf="userTypeName === 'admin' || userTypeName === 'hr'">(
+                            Self )</span></h3>
                 </div>
                 <div class="counts">
                     <p>
@@ -60,7 +61,8 @@
             </li>
             <li (click)="redirectToTicketsPage('rejected')" [ngClass]="{'disabled': rejectedCount === '00'}">
                 <div class="title">
-                    <h3>Rejected</h3>
+                    <h3>Rejected <span *ngIf="userTypeName === 'admin' || userTypeName === 'hr'">(
+                            Self )</span></h3>
                 </div>
                 <div class="counts">
                     <p>

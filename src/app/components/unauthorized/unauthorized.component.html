@@ -1,13 +1,9 @@
-<div mat-dialog-title>
-    <h2>Session Expired !</h2>
-</div>
 <mat-dialog-content>
     <div class="content-wrapper">
         <div class="img-wrapper">
-            <mat-icon>warning</mat-icon>
+            <img src="../../../assets/icons/icons8-session-timeout-96.png" alt="timeout-icon">
         </div>
-        <p>Your session has expired, Please login again.</p>
-        <button mat-raised-button (click)="handleRedirection()"><mat-icon>arrow_back</mat-icon>Go to login
-            page</button>
+        <p>Your session has expired, Please log in again.</p>
+        <button mat-raised-button (click)="handleRedirection()"><mat-icon>arrow_back</mat-icon>Login again</button>
     </div>
 </mat-dialog-content>

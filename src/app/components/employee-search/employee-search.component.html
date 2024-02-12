@@ -1,0 +1,78 @@
+<div class="btn-wrapper">
+    <button mat-raised-button class="search-btn" matTooltip="Search employees"
+        (click)="openSearchContainer()"><mat-icon>search</mat-icon> Search
+        Employee</button>
+    <button mat-raised-button class="add-btn" matTooltip="Add employees"
+        *ngIf="userType === 'admin' || userType === 'hr' || userType === 'hradmin'"
+        (click)="openAddEmployeeDialog()"><mat-icon> add</mat-icon>Add
+        Employee</button>
+</div>
+
+<mat-card class="result-output" *ngIf="employeeDetails">
+    <div class="employeeDetails">
+        <div class="letterWrapper">
+            <p class="first-letter"><span>{{ employeeDetails.name.charAt(0) }}</span></p>
+            <button mat-icon-button *ngIf="userType === 'admin' || userType === 'hr' || userType === 'hradmin'"
+                matTooltip="Edit employee details" (click)="openAddEmployeeDialog(employeeDetails)"
+                class="mat-elevation-z4"><mat-icon>edit</mat-icon></button>
+            <div class=" teams-wrapper">
+                <p>Connect :</p>
+                <a matTooltip="Open contact in teams"
+                    href="https://teams.microsoft.com/l/chat/0/0?users={{employeeDetails.email}}"
+                    class="mat-elevation-z3" target="_blank">
+                    <img src="../../../assets/icons/icons8-teams-96.png" alt="teams-icon">
+                </a>
+            </div>
+        </div>
+        <table>
+            <tbody>
+                <tr>
+                    <td colspan="1">
+                        <p> <img src="./../../../assets/icons/name.png" alt="name"> Name</p>
+                        <p>{{ employeeDetails.name }}</p>
+                    </td>
+                    <td colspan="1">
+                        <p> <img src="../../../assets/icons/Employee ID.png" alt="empoloyee_id"> Employee ID</p>
+                        <p>#{{ employeeDetails.employeeId }}</p>
+                    </td>
+                    <td colspan="1">
+                        <p> <img src=".././../../assets/icons/email.png" alt="email"> Email</p>
+                        <p style="text-transform: lowercase;">{{ employeeDetails.email }}
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p> <img src="../../../assets/icons/designation.png" alt="designation"> Designation</p>
+                        <p>{{ employeeDetails.designation }}</p>
+                    </td>
+                    <td>
+                        <p> <img src="../../../assets/icons/experience.png" alt="experience"> Experience</p>
+                        <p>{{ employeeDetails.experience }} yrs</p>
+                    </td>
+                    <td *ngIf="employeeDetails.reportingManager">
+                        <p> <img src="../../../assets/icons/Reporting Manager.png" alt="Reporting Manager"> Reporting
+                            Manager</p>
+                        <p>{{ employeeDetails.reportingManager }}</p>
+                    </td>
+                </tr>
+                <tr *ngIf="employeeDetails.mobileNumber">
+                    <td>
+                        <p> <img src="../../../assets/icons/phone.png" alt="phone"> Phone</p>
+                        <p>{{ employeeDetails.mobileNumber }}</p>
+                    </td>
+                    <td>
+                        <p> <img src="../../../assets/icons/project.png" alt="project"> Project</p>
+                        <p>{{ employeeDetails.project }}</p>
+                    </td>
+                </tr>
+                <tr *ngIf="employeeDetails.skills">
+                    <td colspan="3">
+                        <p> <img src="../../../assets/icons/icons8-skills-48.png" alt="skills"> Skills</p>
+                        <p>{{ employeeDetails.skills }}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</mat-card>

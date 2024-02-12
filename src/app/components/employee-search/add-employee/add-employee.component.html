@@ -1,0 +1,67 @@
+<h1 mat-dialog-title>{{ !oldData ? "Add New Employee" : "Update employee details"}}</h1>
+<mat-dialog-content class="mat-typography" class="dialog-content">
+    <form [formGroup]="employeeForm">
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input type="text" maxlength="255" matInput formControlName="name" (input)="replaceAllWhiteSpace($event)">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Email Id</mat-label>
+            <input type="email" matInput formControlName="email" (input)="replaceAllWhiteSpace($event)">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Employee ID</mat-label>
+            <input type="text" maxlength="255" matInput formControlName="employeeId"
+                (input)="replaceAllWhiteSpace($event)">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Designation</mat-label>
+            <input type="text" maxlength="255" matInput formControlName="designation"
+                (input)="replaceAllWhiteSpace($event)">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Years of Experience</mat-label>
+            <input type="number" matInput formControlName="experience" (input)="replaceAllWhiteSpace($event)">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Reporting Manager</mat-label>
+            <input type="text" maxlength="255" matInput formControlName="reportingManager"
+                (input)="replaceAllWhiteSpace($event)">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input type="number" matInput formControlName="mobileNumber" (input)="replaceAllWhiteSpace($event)">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Project</mat-label>
+            <input type="text" maxlength="255" matInput formControlName="project"
+                (input)="replaceAllWhiteSpace($event)">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Skills</mat-label>
+            <input type="text" maxlength="255" matInput formControlName="skills" (input)="replaceAllWhiteSpace($event)">
+        </mat-form-field>
+    </form>
+    <div class="delete-container" *ngIf="deleteState">
+        <div class="content-wrapper">
+            <mat-icon>info</mat-icon>
+            <p>Are you sure ?</p>
+            <span>You will not be able to recover this action</span>
+            <div class="btns-wrapper">
+                <button mat-raised-button matTooltip="Cancel" (click)="deleteState = false">Cancel</button>
+                <button mat-raised-button matTooltip="Delete employee record" (click)="handleDeleteUser()">Yes,
+                    delete</button>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-footer">
+    <button mat-raised-button mat-dialog-close class="close-btn" matTooltip="Close" matTooltip="Close"
+        *ngIf="!deleteState"><mat-icon>close</mat-icon>Close</button>
+    <button mat-raised-button *ngIf="oldData && !deleteState" class="delete-btn" (click)="deleteState = true"
+        matTooltip="Delete employee"><mat-icon>delete_forever</mat-icon>Delete Employee</button>
+    <button mat-raised-button class="submit-btn" (click)="submitFormDetails()" [disabled]="!employeeForm.valid"
+        *ngIf="!oldData && !deleteState" matTooltip="Submit"><mat-icon>send</mat-icon>Submit</button>
+    <button mat-raised-button class="submit-btn" (click)="updateFormDetails()" [disabled]="!employeeForm.valid"
+        *ngIf="oldData && !deleteState" matTooltip="Update"><mat-icon>send</mat-icon>Update</button>
+</mat-dialog-actions>

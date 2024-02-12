@@ -227,6 +227,18 @@
   }
 }
 
+@media screen and (max-width: 1100px) {
+  .roadmap-container {
+    display: none;
+  }
+
+  .container {
+    mat-card {
+      width: 100%;
+    }
+  }
+}
+
 @keyframes slideIn {
   0% {
     transform: translateY(-100%);

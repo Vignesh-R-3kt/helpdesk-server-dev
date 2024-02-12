@@ -12,6 +12,12 @@
                     <mat-option value="rejected">Rejected</mat-option>
                 </mat-select>
             </mat-form-field>
+            <div class="download-btn-wrapper"
+                *ngIf="(userRoleType === 'admin' || userRoleType === 'hr'  || userRoleType === 'hradmin') && (userEmail === 'vignesh.r@3ktechnologies.com' || userEmail === 'ajay.s@3ktechnologies.com' || userEmail === 'vishal.m@3ktechnologies.com')">
+                <button mat-raised-button matTooltip="Download comprehensive data dump containing all tickets data"
+                    (click)="handleDownloadArchieve()"><mat-icon>attachment</mat-icon>Download
+                    archive </button>
+            </div>
             <a routerLink='/main-body/new-ticket' mat-raised-button class="new-ticket-btn"
                 matTooltip="Add new ticket"><mat-icon fontIcon="add"></mat-icon> Add New Ticket</a>
         </div>

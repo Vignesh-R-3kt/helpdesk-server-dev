@@ -81,7 +81,8 @@ export class ReviewUserTicketComponent implements OnInit {
         this.dialog.closeAll();
         this.dialog.open(SuccessMessageComponent, {
           data: res,
-          disableClose: true
+          disableClose: true,
+          panelClass: "success-message-ticket-popup"
         })
       }, (err: any) => {
         this.loader.hide();

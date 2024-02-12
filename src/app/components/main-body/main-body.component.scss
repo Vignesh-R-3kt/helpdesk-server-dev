@@ -12,15 +12,16 @@
   display: flex;
 
   .navbar-wrapper {
-    width: 16%;
+    width: 17%;
     background: $white;
     position: relative;
     padding: rem(32) rem(12);
     box-shadow: $box-shadow;
+    min-width: rem(204);
   }
 
   .content-wrapper {
-    width: 84%;
+    width: 83%;
     background: $bg;
     padding: rem(24) rem(32);
   }

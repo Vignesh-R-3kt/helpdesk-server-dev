@@ -8,6 +8,7 @@ import { MyProfileComponent } from '../my-profile/my-profile.component';
 import { MainBodyComponent } from './main-body.component';
 import { InventoryComponent } from '../inventory/inventory.component';
 import { ServiceRequestComponent } from '../service-request/service-request.component';
+import { EmployeeSearchComponent } from '../employee-search/employee-search.component';
 
 const route: Routes = [
   {
@@ -19,6 +20,7 @@ const route: Routes = [
       { path: 'my-profile', component: MyProfileComponent },
       { path: 'inventory', component: InventoryComponent },
       { path: 'service-request', component: ServiceRequestComponent },
+      { path: 'employee-search', component: EmployeeSearchComponent },
       { path: '**', redirectTo: 'dashboard' },
     ]
   },

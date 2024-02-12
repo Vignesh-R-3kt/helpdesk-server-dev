@@ -1,5 +1,19 @@
 @import "../../../../custom_variables";
 
+.ticket-header-title {
+  display: flex;
+  align-items: center;
+  gap: rem(12);
+  justify-content: center;
+
+  img {
+    width: rem(30);
+    height: rem(30);
+    object-fit: contain;
+    margin-top: rem(-4);
+  }
+}
+
 .ticket-body {
   margin-top: rem(14);
 }
@@ -170,6 +184,10 @@ mat-dialog-actions {
       .chat-btn {
         background: $green !important;
         color: $white !important;
+
+        &:disabled {
+          display: none !important;
+        }
       }
     }
   }

@@ -25,6 +25,12 @@ export const navItemsConstant = [
         img: "layers"
     },
     {
+        path: 'employee-search',
+        name: 'Employee Search',
+        roles: ["admin", "user", 'hr', 'hradmin'],
+        img: "people"
+    },
+    {
         path: 'service-request',
         name: 'Service Request',
         roles: ["admin", "hradmin"],

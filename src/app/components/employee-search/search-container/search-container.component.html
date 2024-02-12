@@ -1,0 +1,39 @@
+<div [formGroup]="myGroup" class="popup-header" mat-dialog-title>
+    <mat-icon class="people-icon">people</mat-icon>
+    <div class="search-container mat-elevation-z2">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input formControlName="search" matInput placeholder="Search employee based on name, id, designation & skills"
+            (input)="onSearch($event)" matTooltip="Search employee">
+        <mat-icon class="clear-icon" *ngIf="myGroup.get('search')?.value?.length > 0" matTooltip="Clear Input"
+            (click)="clearInput()">close</mat-icon>
+    </div>
+    <button mat-raised-button class="close-btn" matTooltip="Close" (click)="onCloseClick()"><mat-icon>close</mat-icon>
+        close</button>
+</div>
+
+<mat-dialog-content class="mat-typography">
+    <p class="no-result-msg" *ngIf="searchResults.length === 0 && !loading">{{ emptyMessage }}</p>
+    <div class="spinner-wrapper" *ngIf="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div class="container">
+        <div class="userDetails">
+            <div class="searchResult" *ngIf="searchResults.length">
+                <p>Employees found: {{searchResults.length}}</p>
+            </div>
+            <ul>
+                <li *ngFor="let item of searchResults; let i = index" (click)="onKnowMoreClick(item)"
+                    matTooltip="Click to view employee details">
+                    <div class="img-wrapper">
+                        <img src="../../../../assets/icons/icons8-test-account-64.png" alt="icon">
+                    </div>
+                    <div class="userName">
+                        <p>{{ item.name }} [<b> #{{item.employeeId}} </b>] </p>
+                        <span class="designation">{{ item.designation }}</span>
+                        <span class="experience">Exp : {{item.experience}} Yrs</span>
+                    </div> <a>Click to view details &gt;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</mat-dialog-content>

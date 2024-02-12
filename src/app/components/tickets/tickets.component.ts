@@ -147,4 +147,36 @@ export class TicketsComponent implements OnInit, OnDestroy {
       });
     }, 1);
   }
+
+  handleDownloadArchieve() {
+    this.loader.show();
+    this.http.downloadTicketsArchieve().subscribe((res: any) => {
+      this.loader.hide();
+      if (res.status === 'Success') {
+        this.triggerArchiveFileDownload(res.fileUrl);
+      }
+    },
+      (err: any) => {
+        this.loader.hide();
+        if (err.status === 401) {
+          this.dialog.open(UnauthorizedComponent, {
+            disableClose: true,
+            panelClass: 'unauthorized-popup'
+          })
+        } else {
+          this.snackbar.error('Something went wrong, try again');
+        }
+      })
+  }
+
+  triggerArchiveFileDownload(link: string) {
+    const a = document.createElement('a');
+    a.setAttribute('href', link);
+    a.setAttribute('target', '_blank');
+    a.setAttribute('download', 'true');
+    a.classList.add('archive-download-btn');
+    document.querySelector('body')?.appendChild(a);
+    a.click();
+    document.querySelector('body')?.removeChild(a);
+  }
 }

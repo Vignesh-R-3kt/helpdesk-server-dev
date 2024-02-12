@@ -35,6 +35,10 @@ import { ChatBoxComponent } from '../tickets/view-user-ticket/chat-box/chat-box.
 import { ServiceRequestComponent } from '../service-request/service-request.component';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { ReviewMailComponent } from '../service-request/review-mail/review-mail.component';
+import { EmployeeSearchComponent } from '../employee-search/employee-search.component';
+import { SearchContainerComponent } from '../employee-search/search-container/search-container.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AddEmployeeComponent } from '../employee-search/add-employee/add-employee.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +59,10 @@ import { ReviewMailComponent } from '../service-request/review-mail/review-mail.
     ResolveTicketComponent,
     ChatBoxComponent,
     ServiceRequestComponent,
-    ReviewMailComponent
+    ReviewMailComponent,
+    EmployeeSearchComponent,
+    SearchContainerComponent,
+    AddEmployeeComponent
   ],
   imports: [
     CommonModule,
@@ -76,7 +83,8 @@ import { ReviewMailComponent } from '../service-request/review-mail/review-mail.
     MatTooltipModule,
     MatBadgeModule,
     NgxMatTimepickerModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MainBodyModule { }
