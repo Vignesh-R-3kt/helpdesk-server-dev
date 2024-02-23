@@ -36,60 +36,23 @@
         color: $black;
         margin-bottom: rem(4);
 
-        span {
-          color: $secondary;
-        }
-      }
-
-      .skills-wrapper {
-        width: 100%;
-        padding: 0 rem(6);
-        background: $bg;
-        border-radius: rem(6);
-
-        p {
-          display: flex;
-          align-items: center;
-          width: 100%;
+        span:not(.skill-title) {
           color: $black;
-
-          span {
-            color: $secondary;
-          }
-
-          button {
-            transform: scale(0.6);
-            margin-left: auto;
-            background: $white;
-
-            mat-icon {
-              opacity: 1;
-              color: $black;
-            }
-          }
-        }
-
-        input {
-          padding: rem(4) rem(6);
-          border: rem(1) solid $grey;
-          border-radius: rem(4);
-          margin-left: rem(4);
-          flex-grow: 1;
+          margin-bottom: rem(4);
+          display: inline-block;
+          font-size: rem(16);
+          margin-left: 0;
+          color: $secondary;
         }
       }
     }
 
-    p {
-      width: 100%;
-      text-align: center;
-      font-weight: 600;
-      color: $black;
-
+    .skills-wrapper {
       span {
-        font-weight: 600;
-        color: $secondary;
-        margin-left: rem(6);
-        font-size: rem(16);
+        font-size: rem(14);
+        color: $black;
+        display: inline-block;
+        margin-bottom: rem(4);
       }
     }
 

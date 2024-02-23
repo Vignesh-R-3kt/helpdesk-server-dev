@@ -1,9 +1,9 @@
 <div [formGroup]="myGroup" class="popup-header" mat-dialog-title>
-    <mat-icon class="people-icon">people</mat-icon>
-    <div class="search-container mat-elevation-z2">
+    <img class="people-icon" src="../../../../assets/icons/icons8-conference-foreground-selected-96.png" alt="icon">
+    <div class="search-container">
         <mat-icon class="search-icon">search</mat-icon>
         <input formControlName="search" matInput placeholder="Search employee based on name, id, designation & skills"
-            (input)="onSearch($event)" matTooltip="Search employee">
+            matTooltip="Search employee">
         <mat-icon class="clear-icon" *ngIf="myGroup.get('search')?.value?.length > 0" matTooltip="Clear Input"
             (click)="clearInput()">close</mat-icon>
     </div>
@@ -24,11 +24,13 @@
             <ul>
                 <li *ngFor="let item of searchResults; let i = index" (click)="onKnowMoreClick(item)"
                     matTooltip="Click to view employee details">
-                    <div class="img-wrapper">
-                        <img src="../../../../assets/icons/icons8-test-account-64.png" alt="icon">
+                    <div class="letter-wrapper">
+                        <h3>
+                            {{item.name?.charAt(0)}}
+                        </h3>
                     </div>
                     <div class="userName">
-                        <p>{{ item.name }} [<b> #{{item.employeeId}} </b>] </p>
+                        <p>{{ item.name }} <b> #{{item.employeeId}} </b> </p>
                         <span class="designation">{{ item.designation }}</span>
                         <span class="experience">Exp : {{item.experience}} Yrs</span>
                     </div> <a>Click to view details &gt;</a>

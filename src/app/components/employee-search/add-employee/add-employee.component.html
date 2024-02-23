@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>{{ !oldData ? "Add New Employee" : "Update employee details"}}</h1>
 <mat-dialog-content class="mat-typography" class="dialog-content">
     <form [formGroup]="employeeForm">
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="userType !== 'user'">
             <mat-label>Name</mat-label>
             <input matTooltip="Enter name" type="text" maxlength="255" matInput formControlName="name"
                 (input)="replaceAllWhiteSpace($event)">
@@ -13,8 +13,9 @@
                 *ngIf="employeeForm.controls['name'].touched && employeeForm.controls['name'].dirty && employeeForm.controls['name'].errors?.['minlength']">
                 Minimum 3 characters required
             </mat-error>
+            <mat-icon class="valid-icon" *ngIf="employeeForm.controls['name'].valid">done</mat-icon>
         </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="userType !== 'user'">
             <mat-label>Email Id</mat-label>
             <input matTooltip="Enter Email Id" type="email" matInput formControlName="email"
                 (input)="replaceAllWhiteSpace($event)">
@@ -26,8 +27,9 @@
                 *ngIf="employeeForm.controls['email'].touched && employeeForm.controls['email'].dirty && employeeForm.controls['email'].errors?.['email']">
                 Invalid email address
             </mat-error>
+            <mat-icon class="valid-icon" *ngIf="employeeForm.controls['email'].valid">done</mat-icon>
         </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="userType !== 'user'">
             <mat-label>Employee ID</mat-label>
             <input matTooltip="Enter Employee ID" type="text" maxlength="255" matInput formControlName="employeeId"
                 (input)="replaceAllWhiteSpace($event)">
@@ -39,8 +41,9 @@
                 *ngIf="employeeForm.controls['employeeId'].touched && employeeForm.controls['employeeId'].dirty && employeeForm.controls['employeeId'].errors?.['minlength']">
                 Minimum 3 characters required
             </mat-error>
+            <mat-icon class="valid-icon" *ngIf="employeeForm.controls['employeeId'].valid">done</mat-icon>
         </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="userType !== 'user'">
             <mat-label>Designation</mat-label>
             <input matTooltip="Enter Designation" type="text" maxlength="255" matInput formControlName="designation"
                 (input)="replaceAllWhiteSpace($event)">
@@ -52,11 +55,11 @@
                 *ngIf="employeeForm.controls['designation'].touched && employeeForm.controls['designation'].dirty && employeeForm.controls['designation'].errors?.['minlength']">
                 Minimum 3 characters required
             </mat-error>
+            <mat-icon class="valid-icon" *ngIf="employeeForm.controls['designation'].valid">done</mat-icon>
         </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="userType !== 'user'">
             <mat-label>Years of Experience</mat-label>
-            <input matTooltip="Enter Years of Experience" type="number" matInput formControlName="experience"
-                (input)="replaceAllWhiteSpace($event)">
+            <input matTooltip="Enter Years of Experience" type="number" matInput formControlName="experience">
             <mat-error
                 *ngIf="employeeForm.controls['experience'].touched && employeeForm.controls['experience'].dirty && employeeForm.controls['experience'].errors?.['required']">
                 Required
@@ -65,8 +68,9 @@
                 *ngIf="employeeForm.controls['experience'].touched && employeeForm.controls['experience'].dirty && employeeForm.controls['experience'].errors?.['max']">
                 Minimum 30 Years of experience
             </mat-error>
+            <mat-icon class="valid-icon" *ngIf="employeeForm.controls['experience'].valid">done</mat-icon>
         </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="userType !== 'user'">
             <mat-label>Reporting Manager</mat-label>
             <input matTooltip="Enter Reporting Manager" type="text" maxlength="255" matInput
                 formControlName="reportingManager" (input)="replaceAllWhiteSpace($event)">
@@ -78,8 +82,9 @@
                 *ngIf="employeeForm.controls['reportingManager'].touched && employeeForm.controls['reportingManager'].dirty && employeeForm.controls['reportingManager'].errors?.['minlength']">
                 Minimum 3 characters required
             </mat-error>
+            <mat-icon class="valid-icon" *ngIf="employeeForm.controls['reportingManager'].valid">done</mat-icon>
         </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="userType !== 'user'">
             <mat-label>Phone</mat-label>
             <input matTooltip="Enter Mobile Number" type="number" matInput formControlName="mobileNumber"
                 (input)="replaceAllWhiteSpace($event)">
@@ -91,8 +96,9 @@
                 *ngIf="employeeForm.controls['mobileNumber'].touched && employeeForm.controls['mobileNumber'].dirty && employeeForm.controls['mobileNumber'].errors && !employeeForm.controls['mobileNumber'].errors?.['required']">
                 Invalid phone number
             </mat-error>
+            <mat-icon class="valid-icon" *ngIf="employeeForm.controls['mobileNumber'].valid">done</mat-icon>
         </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="userType !== 'user'">
             <mat-label>Project</mat-label>
             <input matTooltip="Enter Project" type="text" maxlength="255" matInput formControlName="project"
                 (input)="replaceAllWhiteSpace($event)">
@@ -104,12 +110,34 @@
                 *ngIf="employeeForm.controls['project'].touched && employeeForm.controls['project'].dirty && employeeForm.controls['project'].errors?.['minlength']">
                 Minimum 3 characters required
             </mat-error>
+            <mat-icon class="valid-icon" *ngIf="employeeForm.controls['project'].valid">done</mat-icon>
         </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="outline">
+        <!-- <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Skills</mat-label>
             <input matTooltip="Enter Skills" type="text" maxlength="255" matInput formControlName="skills"
                 (input)="replaceAllWhiteSpace($event)">
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="skills-wrapper">
+            <mat-form-field class="example-chip-list" appearance="outline">
+                <mat-label>Employee Skills</mat-label>
+                <mat-chip-grid #chipGrid aria-label="Fruit selection">
+                    <mat-chip-row *ngFor="let fruit of skills" (removed)="remove(fruit)">
+                        {{fruit}}
+                        <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </mat-chip-row>
+                </mat-chip-grid>
+                <input placeholder="Add New Skill..." #skillInput [formControl]="skillsCtrl"
+                    [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" />
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let skill of filteredSkills | async" [value]="skill">
+                        {{skill}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
     </form>
     <div class="delete-container" *ngIf="deleteState">
         <div class="content-wrapper">
@@ -127,8 +155,9 @@
 <mat-dialog-actions class="dialog-footer">
     <button mat-raised-button mat-dialog-close class="close-btn" matTooltip="Close" matTooltip="Close"
         *ngIf="!deleteState"><mat-icon>close</mat-icon>Close</button>
-    <button mat-raised-button *ngIf="oldData && !deleteState" class="delete-btn" (click)="deleteState = true"
-        matTooltip="Delete employee"><mat-icon>delete_forever</mat-icon>Delete Employee</button>
+    <button mat-raised-button *ngIf="oldData && !deleteState && userType !== 'user'" class="delete-btn"
+        (click)="deleteState = true" matTooltip="Delete employee"><mat-icon>delete_forever</mat-icon>Delete
+        Employee</button>
     <button mat-raised-button class="submit-btn" (click)="submitFormDetails()" [disabled]="!employeeForm.valid"
         *ngIf="!oldData && !deleteState" matTooltip="Submit"><mat-icon>send</mat-icon>Submit</button>
     <button mat-raised-button class="submit-btn" (click)="updateFormDetails()" [disabled]="!employeeForm.valid"

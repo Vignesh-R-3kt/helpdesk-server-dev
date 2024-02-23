@@ -39,6 +39,8 @@ import { EmployeeSearchComponent } from '../employee-search/employee-search.comp
 import { SearchContainerComponent } from '../employee-search/search-container/search-container.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AddEmployeeComponent } from '../employee-search/add-employee/add-employee.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -84,7 +86,9 @@ import { AddEmployeeComponent } from '../employee-search/add-employee/add-employ
     MatBadgeModule,
     NgxMatTimepickerModule,
     FormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ]
 })
 export class MainBodyModule { }

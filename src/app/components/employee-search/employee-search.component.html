@@ -3,18 +3,21 @@
         (click)="openSearchContainer()"><mat-icon>search</mat-icon> Search
         Employee</button>
     <button mat-raised-button class="add-btn" matTooltip="Add employees"
-        *ngIf="userType === 'admin' || userType === 'hr' || userType === 'hradmin'"
-        (click)="openAddEmployeeDialog()"><mat-icon> add</mat-icon>Add
+        *ngIf="userType === 'admin' || userType === 'hr'" (click)="openAddEmployeeDialog()"><mat-icon> add</mat-icon>Add
         Employee</button>
+    <button mat-raised-button class="download-btn" matTooltip="Download all employees data"
+        *ngIf="userType === 'admin' || userType === 'hr'"
+        (click)="downloadEmployeesList()"><mat-icon>attachment</mat-icon>Download</button>
 </div>
 
 <mat-card class="result-output" *ngIf="employeeDetails">
     <div class="employeeDetails">
         <div class="letterWrapper">
             <p class="first-letter"><span>{{ employeeDetails.name.charAt(0) }}</span></p>
-            <button mat-icon-button *ngIf="userType === 'admin' || userType === 'hr' || userType === 'hradmin'"
+            <button mat-raised-button
+                *ngIf="userType === 'admin' || userType === 'hr' || userEmail === employeeDetails.email"
                 matTooltip="Edit employee details" (click)="openAddEmployeeDialog(employeeDetails)"
-                class="mat-elevation-z4"><mat-icon>edit</mat-icon></button>
+                class="mat-elevation-z4"><mat-icon>edit</mat-icon> Edit</button>
             <div class="teams-wrapper">
                 <div class="content-wrapper" *ngIf="employeeDetails.email !== userEmail">
                     <p>Connect :</p>
@@ -71,7 +74,11 @@
                 <tr *ngIf="employeeDetails.skills">
                     <td colspan="3">
                         <p> <img src="../../../assets/icons/icons8-skills-48.png" alt="skills"> Skills</p>
-                        <p>{{ employeeDetails.skills }}</p>
+                        <p style="text-transform: capitalize;">
+                            <mat-chip-set>
+                                <mat-chip *ngFor="let item of employeeSkills">{{item}}</mat-chip>
+                            </mat-chip-set>
+                        </p>
                     </td>
                 </tr>
             </tbody>

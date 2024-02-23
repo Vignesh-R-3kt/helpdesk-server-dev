@@ -7,10 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-
   // private baseUrl: string = 'http://localhost:8080'; //localhost
-  private baseUrl: string = 'http://172.16.50.102:8080'; //local server
-  // private baseUrl: string = 'http://192.168.1.104:8080'; // Ajay Local host
+  private baseUrl: string = 'http://172.16.50.104:8080'; //local server
 
 
   constructor(private http: HttpClient) { }
@@ -115,5 +113,15 @@ export class ApiService {
   // Delete employee details
   deleteEmployeeDetails(id: number) {
     return this.http.delete(`${this.baseUrl}/api/employee-data/employee/${id}`);
+  }
+
+  // Method to get all skills list
+  getAllSkillslist() {
+    return this.http.get(`${this.baseUrl}/api/skills/`);
+  }
+
+  // Method to download all employees data
+  downloadAllEmployeesData() {
+    return this.http.get(`${this.baseUrl}/api/employee-data/download-employees-list`);
   }
 }

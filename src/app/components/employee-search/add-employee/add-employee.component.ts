@@ -1,10 +1,15 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserTypeService } from 'src/app/services/user-type.service';
+import { Component, ElementRef, Inject, OnInit, ViewChild, inject } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UnauthorizedComponent } from '../../unauthorized/unauthorized.component';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { Observable, startWith, map } from 'rxjs';
 
 @Component({
   selector: 'app-add-employee',
@@ -15,24 +20,55 @@ export class AddEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
   oldData: any;
   deleteState: boolean = false;
+  skills: any[] = [];
+  allSkills: string[] = [];
+  skillsCtrl = new FormControl('');
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  filteredSkills: Observable<string[]>;
+  userType: any;
+  userEmail: any;
+  @ViewChild('skillInput') fruitInput: ElementRef<HTMLInputElement>;
+  announcer = inject(LiveAnnouncer);
 
-  constructor(@Inject(MAT_DIALOG_DATA) private parentData: any, public dialogRef: MatDialogRef<AddEmployeeComponent>, private fb: FormBuilder, private http: ApiService, private loader: LoaderService, private snackbar: SnackbarService, private dialog: MatDialog) {
+  constructor(@Inject(MAT_DIALOG_DATA) private parentData: any, public dialogRef: MatDialogRef<AddEmployeeComponent>, private fb: FormBuilder, private http: ApiService, private loader: LoaderService, private snackbar: SnackbarService, private dialog: MatDialog, private userTypeService: UserTypeService) {
     this.employeeForm = fb.group({
       name: ["", [Validators.required, Validators.minLength(3)]],
-      email: ["", [Validators.required, Validators.email]],
+      email: ["@3ktechnologies.com", [Validators.required, Validators.email]],
       employeeId: ["", [Validators.required, Validators.minLength(3)]],
       designation: ["", [Validators.required, Validators.minLength(3)]],
       experience: ["", [Validators.required, Validators.min(0), Validators.max(50)]],
       reportingManager: ["", [Validators.required, Validators.minLength(3)]],
       mobileNumber: ["", [Validators.required, this.validatePhoneNumber]],
       project: ["", [Validators.required, Validators.minLength(3)]],
-      skills: [""]
     });
     this.oldData = parentData;
+    this.filteredSkills = this.skillsCtrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allSkills.slice())),
+    );
   }
 
   ngOnInit(): void {
     this.oldData && this.updatePreviousData();
+    this.getSkillsData();
+    this.userType = this.userTypeService.getUserType();
+    this.userEmail = this.userTypeService.getUserEmailId();
+  }
+
+  getSkillsData() {
+    this.loader.show();
+    this.http.getAllSkillslist().subscribe((res: any) => {
+      this.allSkills = res.skills;
+      this.loader.hide();
+    }, (err: any) => {
+      this.loader.hide();
+      if (err.status === 401) {
+        this.dialog.open(UnauthorizedComponent, {
+          disableClose: true,
+          panelClass: 'unauthorized-popup'
+        })
+      }
+    })
   }
 
   validatePhoneNumber(control: any) {
@@ -49,7 +85,7 @@ export class AddEmployeeComponent implements OnInit {
     this.employeeForm.get('reportingManager')?.setValue(this.oldData.reportingManager);
     this.employeeForm.get('designation')?.setValue(this.oldData.designation);
     this.employeeForm.get('experience')?.setValue(this.oldData.experience);
-    this.employeeForm.get('skills')?.setValue(this.oldData.skills);
+    this.skills = this.oldData.skills ? this.oldData.skills.split(', ') : [];
   }
 
   submitFormDetails() {
@@ -63,7 +99,7 @@ export class AddEmployeeComponent implements OnInit {
       reportingManager: formValue.reportingManager,
       designation: formValue.designation,
       experience: formValue.experience,
-      skills: formValue.skills
+      skills: this.skills.join(", "),
     }
     this.loader.show();
     this.http.addNewEmployee(payload).subscribe((res: any) => {
@@ -100,7 +136,7 @@ export class AddEmployeeComponent implements OnInit {
       reportingManager: formValue.reportingManager,
       designation: formValue.designation,
       experience: String(formValue.experience),
-      skills: formValue.skills
+      skills: this.skills.join(', ')
     }
     this.loader.show();
     this.http.updateEmployeeDetails(payload, this.oldData.id).subscribe((res: any) => {
@@ -150,5 +186,35 @@ export class AddEmployeeComponent implements OnInit {
 
   replaceAllWhiteSpace(e: any): void {
     e.target.value = e.target.value.replaceAll('   ', '  ').trimStart();
+  }
+
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    if (value) {
+      this.skills.push(value);
+    }
+    event.chipInput!.clear();
+    this.skillsCtrl.setValue(null);
+  }
+
+  remove(fruit: string): void {
+    const index = this.skills.indexOf(fruit);
+    if (index >= 0) {
+      this.skills.splice(index, 1);
+      this.announcer.announce(`Removed ${fruit}`);
+    }
+  }
+
+  selected(event: any): void {
+    this.skills.push(event.option.viewValue);
+    this.fruitInput.nativeElement.value = '';
+    this.skillsCtrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allSkills.filter(fruit => fruit.toLowerCase().includes(filterValue));
   }
 }

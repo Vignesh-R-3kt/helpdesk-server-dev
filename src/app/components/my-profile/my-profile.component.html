@@ -12,18 +12,12 @@
       <p>Reporting Manager: <span>{{ userProfileDetails?.reportingManager }}</span> </p>
       <p>Project: <span>{{ userProfileDetails?.project }}</span> </p>
       <p>Phone: <span>{{ userProfileDetails?.mobileNumber }}</span> </p>
-      <p *ngIf="userType !== 'user'" style="width: 100%;">Skills: <span>{{ userProfileDetails?.skills }}</span> </p>
-      <div class="skills-wrapper" *ngIf="userType !== 'admin' && userType !== 'hr' && userType !== 'hradmin'">
-        <p>Skills:
-          <span *ngIf="!skillEditMode">{{ skills }}</span>
-          <input type="text" placeholder="Enter skills" *ngIf="skillEditMode" [(ngModel)]="skills">
-          <button mat-icon-button matTooltip="Edit skills" class="mat-elevation-z6" (click)="skillEditMode = true"
-            *ngIf="!skillEditMode">
-            <mat-icon>edit</mat-icon></button>
-          <button mat-icon-button matTooltip="Save skills" class="mat-elevation-z6" *ngIf="skillEditMode"
-            (click)="updateSkillsValue()"><mat-icon>save</mat-icon></button>
-        </p>
-      </div>
+      <p style="width: 100%;" class="skills-wrapper">
+        <span class="skill-title">Skills: </span>
+        <mat-chip-set>
+          <mat-chip *ngFor="let skill of userSkills">{{skill}}</mat-chip>
+        </mat-chip-set>
+      </p>
     </div>
   </mat-card>
 </div>

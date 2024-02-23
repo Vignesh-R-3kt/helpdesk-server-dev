@@ -16,8 +16,7 @@ export class MyProfileComponent implements OnInit {
   userDetails: any;
   userProfileDetails: any;
   userType: string;
-  skillEditMode: boolean = false;
-  skills: string;
+  userSkills: any;
 
   constructor(private http: ApiService, private dialog: MatDialog, private UserTypeService: UserTypeService, private loader: LoaderService, private snackbar: SnackbarService) { }
 
@@ -36,7 +35,12 @@ export class MyProfileComponent implements OnInit {
       this.loader.hide();
       if (res) {
         this.userProfileDetails = res;
-        this.skills = res.skills;
+        const skillsData = res.skills ? res.skills.split(", ") : [];
+        this.userSkills = skillsData.filter((skill: any) => {
+          if (skill !== '') {
+            return skill;
+          }
+        })
       }
     }, (err: any) => {
       this.loader.hide()
@@ -48,28 +52,6 @@ export class MyProfileComponent implements OnInit {
       } else {
         this.snackbar.error('Something went wrong, try again');
       }
-    })
-  }
-
-  updateSkillsValue() {
-    const payload = {
-      skills: this.skills.trim().replaceAll(/  +/g, ' '),
-    }
-    this.loader.show();
-    this.http.updateEmployeeDetails(payload, this.userProfileDetails.id).subscribe((res: any) => {
-      this.skillEditMode = false;
-      this.loader.hide();
-      this.snackbar.success("Skills updated successfully");
-    }, (err: any) => {
-      this.loader.hide()
-      if (err.status === 401) {
-        this.dialog.open(UnauthorizedComponent, {
-          disableClose: true,
-          panelClass: 'unauthorized-popup'
-        })
-      } else {
-        this.snackbar.error('Something went wrong, try again');
-      };
     })
   }
 }

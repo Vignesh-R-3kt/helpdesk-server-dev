@@ -112,7 +112,6 @@ export class TicketsComponent implements OnInit, OnDestroy {
     this.dialog.open(ViewUserTicketComponent, {
       data: item,
       panelClass: "custom_animation",
-      disableClose: true,
       autoFocus: false
     });
   }

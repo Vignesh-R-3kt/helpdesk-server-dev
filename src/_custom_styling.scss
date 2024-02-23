@@ -112,3 +112,13 @@ ngx-mat-timepicker-face {
   display: flex;
   justify-content: center;
 }
+
+mat-chip {
+  background: $purple !important;
+  box-shadow: $box-shadow;
+
+  .mdc-evolution-chip__text-label {
+    color: $white !important;
+    text-transform: capitalize;
+  }
+}
