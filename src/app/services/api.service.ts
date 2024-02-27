@@ -124,4 +124,9 @@ export class ApiService {
   downloadAllEmployeesData() {
     return this.http.get(`${this.baseUrl}/api/employee-data/download-employees-list`);
   }
+
+  // Metho to download all inventory data
+  downloadAllInventoryData() {
+    return this.http.get(`${this.baseUrl}/api/inventory/download-archive`);
+  }
 }
