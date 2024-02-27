@@ -19,6 +19,8 @@
                     </mat-select>
                 </mat-form-field>
             </div>
+            <button mat-raised-button (click)="downloadAllInventoryData()"><mat-icon>attachment</mat-icon>
+                Archive</button>
             <button mat-raised-button class="add-device-btn" matTooltip="Add new device"
                 (click)="openAddDeviceDialog()"><mat-icon>add</mat-icon>
                 Add Device</button>
@@ -41,7 +43,7 @@
                         <th style="background: #F4F5F9;">Serial No</th>
                         <th style="background: #F4F5F9;">Processor</th>
                         <th style="background: #F4F5F9;">Ram (GB)</th>
-                        <th style="background: #F4F5F9;">HDD (GB)</th>
+                        <th style="background: #F4F5F9;">Storage (GB)</th>
                         <th style="background: #F4F5F9;">Asset Tag ID</th>
                         <th style="background: #F4F5F9;">Warranty</th>
                         <th>Agreement</th>
@@ -53,16 +55,16 @@
                         <td>{{ i + 1 }}</td>
                         <td>{{device.assigned ? 'Yes' : 'No'}}</td>
                         <td>{{ device.employee_name || '***' }}</td>
-                        <td style="text-transform: lowercase;"> {{ device.employee_id || '***' }}</td>
+                        <td style="text-transform: lowercase;"> {{ device.employeeId || '***' }}</td>
                         <td style="background: #F4F5F9;"> {{ device.make }} </td>
                         <td style="background: #F4F5F9;">{{ device.model }}</td>
-                        <td style="background: #F4F5F9;">{{ device.serial_no }}</td>
+                        <td style="background: #F4F5F9;">{{ device.serialNo }}</td>
                         <td style="background: #F4F5F9; text-transform: unset;">{{ device.processor || '***' }}
                         </td>
-                        <td style="background: #F4F5F9;">{{ device.ram_size && device.ram_size + ' GB' || '***' }}</td>
-                        <td style="background: #F4F5F9;">{{ device.storage_size && device.storage_size + ' GB' || '***'
+                        <td style="background: #F4F5F9;">{{ device.ramSize && device.ramSize + ' GB' || '***' }}</td>
+                        <td style="background: #F4F5F9;">{{ device.storageSize && device.storageSize + ' GB' || '***'
                             }}</td>
-                        <td style="background: #F4F5F9;">{{ device.asset_tag_id }}</td>
+                        <td style="background: #F4F5F9;">{{ device.assetTagId }}</td>
                         <td style="background: #F4F5F9;">{{ device.warranty }}</td>
                         <td>{{ device.agreement === 'true' ? 'Yes' : 'No' }}</td>
                         <td>

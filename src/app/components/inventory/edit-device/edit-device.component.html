@@ -45,7 +45,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" *ngIf="deviceData.device_type === 'laptop'">
+            <mat-form-field appearance="outline" *ngIf="deviceData.deviceType === 'laptop'">
                 <mat-label>Processor</mat-label>
                 <input type="text" matInput title="processor" (input)="replaceAllWhiteSpace($event)" maxlength="255"
                     formControlName="processor">
@@ -59,7 +59,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" *ngIf="deviceData.device_type === 'laptop'">
+            <mat-form-field appearance="outline" *ngIf="deviceData.deviceType === 'laptop'">
                 <mat-label>RAM Size(in GB)</mat-label>
                 <input type="number" matInput title="RAM size" (input)="preventNumberField($event)"
                     formControlName="ram_size">
@@ -73,8 +73,8 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" *ngIf="deviceData.device_type === 'laptop'">
-                <mat-label>HDD Size(in GB)</mat-label>
+            <mat-form-field appearance="outline" *ngIf="deviceData.deviceType === 'laptop'">
+                <mat-label>Storage Size(in GB)</mat-label>
                 <input type="number" matInput title="Storage size" (input)="preventNumberField($event)"
                     formControlName="storage_size">
                 <mat-error
@@ -83,7 +83,7 @@
                 </mat-error>
                 <mat-error
                     *ngIf="deviceForm.controls['storage_size'].touched && deviceForm.controls['storage_size'].dirty && deviceForm.controls['storage_size'].errors?.['max'] || deviceForm.controls['storage_size'].errors?.['min']">
-                    Invalid HDD Size
+                    Invalid Storage Size
                 </mat-error>
             </mat-form-field>
 

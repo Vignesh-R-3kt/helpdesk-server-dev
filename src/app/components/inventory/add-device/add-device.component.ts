@@ -90,8 +90,8 @@ export class AddDeviceComponent implements OnInit {
       processor: formValue.processor ? formValue.processor : '',
       ramSize: formValue.ramSize ? formValue.ramSize : '',
       storageSize: formValue.storageSize ? formValue.storageSize : '',
-      serialNo: formValue.serialNo,
-      assetTagId: formValue.assetTagId,
+      serialNo: formValue.serialNo.toUpperCase(),
+      assetTagId: formValue.assetTagId.toUpperCase(),
       warranty: formValue.warranty,
       agreement: formValue.agreement && formValue.assigned ? formValue.agreement : 'false',
       attachment: this.attachmentFile ? this.attachmentFile : '',
@@ -101,25 +101,26 @@ export class AddDeviceComponent implements OnInit {
       expectedReturnDate: formValue.expectedReturnDate && this.deviceAssigned && this.newDeviceType === 'mobile' ? formatCustomDate(formValue.expectedReturnDate) : '',
       deviceType: this.newDeviceType,
     };
+
     const formData = new FormData();
 
-    formData.append('device_type', payload.deviceType);
-    formData.append('employee_name', payload.employeeName);
-    formData.append('employee_id', payload.employeeId);
+    formData.append('deviceType', payload.deviceType);
+    formData.append('employeeName', payload.employeeName);
+    formData.append('employeeId', payload.employeeId);
     formData.append('make', payload.make);
     formData.append('model', payload.model);
     formData.append('processor', payload.processor);
-    formData.append('ram_size', payload.ramSize);
-    formData.append('storage_size', payload.storageSize);
-    formData.append('serial_no', payload.serialNo);
-    formData.append('asset_tag_id', payload.assetTagId);
+    formData.append('ramSize', payload.ramSize);
+    formData.append('storageSize', payload.storageSize);
+    formData.append('serialNo', payload.serialNo);
+    formData.append('assetTagId', payload.assetTagId);
     formData.append('warranty', payload.warranty);
     formData.append('agreement', payload.agreement);
     formData.append('attachment', payload.attachment);
     formData.append('assigned', payload.assigned);
-    formData.append('additional_details', payload.additionalDetails);
-    formData.append('last_updated_date', payload.lastUpdatedDate);
-    formData.append('expected_return_date', payload.expectedReturnDate);
+    formData.append('additionalDetails', payload.additionalDetails);
+    formData.append('lastUpdatedDate', payload.lastUpdatedDate);
+    formData.append('expectedReturnDate', payload.expectedReturnDate);
 
     if (payload.attachment && payload.attachment.size > 2097152) {
       this.snackbar.error('Limit for file uploads is 2 MB. Kindly replace the attachment.')
@@ -142,6 +143,10 @@ export class AddDeviceComponent implements OnInit {
               disableClose: true,
               panelClass: 'unauthorized-popup'
             })
+          } else if (err.status === 400 && err.error.message && err.error.message === 'serial number already exist') {
+            this.snackbar.error('Serial number already used with different device.');
+          } else if (err.status === 400 && err.error.message && err.error.message === 'asset tag id already exist') {
+            this.snackbar.error('Asset tag id already used with different device.');
           } else {
             this.snackbar.error('Something went wrong, try again');
           }
@@ -162,6 +167,10 @@ export class AddDeviceComponent implements OnInit {
               disableClose: true,
               panelClass: 'unauthorized-popup'
             })
+          } else if (err.status === 400 && err.error.message && err.error.message === 'serial number already exist') {
+            this.snackbar.error('Serial number already used with different device.');
+          } else if (err.status === 400 && err.error.message && err.error.message === 'asset tag id already exist') {
+            this.snackbar.error('Asset tag id already used with different device.');
           } else {
             this.snackbar.error('Something went wrong, try again');
           }

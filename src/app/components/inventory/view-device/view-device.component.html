@@ -11,7 +11,7 @@
                     Device Type:
                 </td>
                 <td width="70%">
-                    {{ dialogData.device_type }}
+                    {{ dialogData.deviceType }}
                 </td>
             </tr>
             <tr>
@@ -27,7 +27,7 @@
                     Employee Name:
                 </td>
                 <td>
-                    {{ dialogData.employee_name }}
+                    {{ dialogData.employeeName }}
                 </td>
             </tr>
             <tr *ngIf="dialogData.assigned">
@@ -35,7 +35,7 @@
                     Employee ID / Email:
                 </td>
                 <td style="text-transform: lowercase;">
-                    {{ dialogData.employee_id }}
+                    {{ dialogData.employeeId }}
                 </td>
             </tr>
             <tr>
@@ -59,10 +59,10 @@
                     Serial Number:
                 </td>
                 <td>
-                    {{ dialogData.serial_no }}
+                    {{ dialogData.serialNo }}
                 </td>
             </tr>
-            <tr *ngIf="dialogData.device_type === 'laptop'">
+            <tr *ngIf="dialogData.deviceType === 'laptop'">
                 <td>
                     Processor:
                 </td>
@@ -70,20 +70,20 @@
                     {{ dialogData.processor }}
                 </td>
             </tr>
-            <tr *ngIf="dialogData.device_type === 'laptop'">
+            <tr *ngIf="dialogData.deviceType === 'laptop'">
                 <td>
                     Ram (in GB):
                 </td>
                 <td>
-                    {{ dialogData.ram_size }} GB
+                    {{ dialogData.ramSize }} GB
                 </td>
             </tr>
-            <tr *ngIf="dialogData.device_type === 'laptop'">
+            <tr *ngIf="dialogData.deviceType === 'laptop'">
                 <td>
                     HDD (in GB):
                 </td>
                 <td>
-                    {{ dialogData.storage_size }} GB
+                    {{ dialogData.storageSize }} GB
                 </td>
             </tr>
             <tr>
@@ -91,7 +91,7 @@
                     Asset Tag ID:
                 </td>
                 <td>
-                    {{ dialogData.asset_tag_id }}
+                    {{ dialogData.assetTagId }}
                 </td>
             </tr>
             <tr>
@@ -115,23 +115,23 @@
                     Additional Details:
                 </td>
                 <td style="text-transform: none;">
-                    {{ dialogData.additional_details || '***'}}
+                    {{ dialogData.additionalDetails || '***'}}
                 </td>
             </tr>
-            <tr *ngIf="dialogData.last_updated_date">
+            <tr *ngIf="dialogData.lastUpdatedDate">
                 <td>
                     Device details updated on:
                 </td>
                 <td>
-                    {{ dialogData.last_updated_date}}
+                    {{ dialogData.lastUpdatedDate}}
                 </td>
             </tr>
-            <tr *ngIf="dialogData.expected_return_date">
+            <tr *ngIf="dialogData.expectedReturnDate">
                 <td>
                     Expected device return date:
                 </td>
                 <td>
-                    {{ dialogData.expected_return_date}}
+                    {{ dialogData.expectedReturnDate}}
                 </td>
             </tr>
             <tr *ngIf="dialogData.attachment">

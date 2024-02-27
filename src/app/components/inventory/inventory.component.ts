@@ -69,7 +69,7 @@ export class InventoryComponent implements OnInit {
   private filterDevice(type: string = this.currentDeviceType, status: string = this.deviceStatus): void {
     $('#devices-table').DataTable().destroy();
     const deviceStatus = status === 'true' ? true : false;
-    this.filteredDevice = this.devicesTableData.filter(device => device.device_type === type && device.assigned === deviceStatus);
+    this.filteredDevice = this.devicesTableData.filter(device => device.deviceType === type && device.assigned === deviceStatus);
     this.reinitializeTable();
   }
 
@@ -119,5 +119,26 @@ export class InventoryComponent implements OnInit {
     this.dialog.open(AddDeviceComponent, {
       disableClose: true
     });
+  }
+
+  downloadAllInventoryData(): void {
+    this.loader.show();
+    this.http.downloadAllInventoryData().subscribe((res: any) => {
+      this.loader.hide();
+      this.triggerArchiveFileDownload(res.fileUrl);
+    }, (err: any) => {
+      this.loader.hide();
+    })
+  }
+
+  triggerArchiveFileDownload(link: string) {
+    const a = document.createElement('a');
+    a.setAttribute('href', link);
+    a.setAttribute('target', '_blank');
+    a.setAttribute('download', 'true');
+    a.classList.add('archive-download-btn');
+    document.querySelector('body')?.appendChild(a);
+    a.click();
+    document.querySelector('body')?.removeChild(a);
   }
 }

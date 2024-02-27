@@ -33,33 +33,33 @@ export class EditDeviceComponent implements OnInit {
     private router: Router
   ) {
     this.deviceForm = this.fb.group({
-      employee_name: [data.employee_name, [Validators.required, Validators.minLength(2)]],
-      employee_id: [data.employee_id, [Validators.required, Validators.minLength(2)]],
+      employee_name: [data.employeeName, [Validators.required, Validators.minLength(2)]],
+      employee_id: [data.employeeId, [Validators.required, Validators.minLength(2)]],
       make: [data.make, [Validators.required, Validators.minLength(2)]],
       model: [data.model, [Validators.required, Validators.minLength(2)]],
       processor: [data.processor, [Validators.required, Validators.minLength(2)]],
-      ram_size: [data.ram_size, [Validators.required, Validators.max(500), Validators.min(0.1)]],
-      storage_size: [data.storage_size, [Validators.required, Validators.max(10000), Validators.min(0.1)]],
-      serial_no: [data.serial_no, [Validators.required, Validators.minLength(2)]],
-      asset_tag_id: [data.asset_tag_id, [Validators.required, Validators.minLength(2)]],
+      ram_size: [data.ramSize, [Validators.required, Validators.max(500), Validators.min(0.1)]],
+      storage_size: [data.storageSize, [Validators.required, Validators.max(10000), Validators.min(0.1)]],
+      serial_no: [data.serialNo, [Validators.required, Validators.minLength(2)]],
+      asset_tag_id: [data.assetTagId, [Validators.required, Validators.minLength(2)]],
       warranty: [data.warranty, [Validators.required, Validators.minLength(2)]],
       agreement: [data.agreement, [Validators.required]],
       attachment: [data.attachment],
       assigned: [data.assigned, [Validators.required]],
-      additional_details: [data.additional_details],
-      expected_return_date: [data.expected_return_date, Validators.required],
-      device_type: [data.device_type],
+      additional_details: [data.additionalDetails],
+      expected_return_date: [data.expectedReturnDate, Validators.required],
+      device_type: [data.deviceType],
       file: ["", Validators.required]
     })
   }
 
   ngOnInit(): void {
     this.deviceData = this.data;
-    this.deviceType = this.deviceData.device_type;
+    this.deviceType = this.deviceData.deviceType;
     this.deviceAssigned = this.deviceData.assigned;
     this.today = formatCustomDate(new Date);
     this.handleAttachmentControl();
-    if (this.data.device_type !== "laptop") {
+    if (this.data.deviceType !== "laptop") {
       this.initializeMobileForm();
     } else {
       this.initializeLaptopForm();
@@ -80,43 +80,43 @@ export class EditDeviceComponent implements OnInit {
   fetchFormData(): void {
     const formValue = this.deviceForm.value;
     const payload = {
-      employee_name: formValue.employee_name,
-      employee_id: formValue.employee_id,
+      employeeName: formValue.employee_name,
+      employeeId: formValue.employee_id,
       make: formValue.make,
       model: formValue.model,
       processor: formValue.processor,
-      ram_size: formValue.ram_size,
-      storage_size: formValue.storage_size,
-      serial_no: formValue.serial_no,
-      asset_tag_id: formValue.asset_tag_id,
+      ramSize: formValue.ram_size,
+      storageSize: formValue.storage_size,
+      serialNo: formValue.serial_no.toUpperCase(),
+      assetTagId: formValue.asset_tag_id.toUpperCase(),
       warranty: formValue.warranty,
       agreement: this.deviceAssigned ? formValue.agreement : 'false',
       attachment: this.deviceData.attachment,
       assigned: this.deviceAssigned,
-      additional_details: formValue.additional_details,
-      last_updated_date: formatCustomDate(new Date),
-      expected_return_date: formValue.expected_return_date && this.deviceAssigned && this.deviceType === 'mobile' ? formatCustomDate(formValue.expected_return_date) : '',
-      device_type: this.deviceData.device_type,
+      additionalDetails: formValue.additional_details,
+      lastUpdatedDate: formatCustomDate(new Date),
+      expectedReturnDate: formValue.expected_return_date && this.deviceAssigned && this.deviceType === 'mobile' ? formatCustomDate(formValue.expected_return_date) : '',
+      deviceType: this.deviceData.deviceType,
     }
 
     const formData = new FormData();
-    formData.append('employee_name', this.deviceAssigned ? formValue.employee_name : "");
-    formData.append('employee_id', this.deviceAssigned ? formValue.employee_id : "");
+    formData.append('employeeName', this.deviceAssigned ? formValue.employee_name : "");
+    formData.append('employeeId', this.deviceAssigned ? formValue.employee_id : "");
     formData.append('make', formValue.make);
     formData.append('model', formValue.model);
     formData.append('processor', formValue.processor ? formValue.processor : "");
-    formData.append('ram_size', formValue.ram_size ? formValue.ram_size : "");
-    formData.append('storage_size', formValue.storage_size ? formValue.storage_size : "");
-    formData.append('asset_tag_id', formValue.asset_tag_id);
+    formData.append('ramSize', formValue.ram_size ? formValue.ram_size : "");
+    formData.append('storageSize', formValue.storage_size ? formValue.storage_size : "");
+    formData.append('assetTagId', formValue.asset_tag_id.toUpperCase());
     formData.append('warranty', formValue.warranty);
     formData.append('agreement', this.deviceAssigned ? formValue.agreement : 'false');
     formData.append('attachment', this.newAttachmentValue);
     formData.append('assigned', String(this.deviceAssigned));
-    formData.append('additional_details', formValue.additional_details);
-    formData.append('serial_no', formValue.serial_no);
-    formData.append('last_updated_date', formatCustomDate(new Date));
-    formData.append('expected_return_date', formValue.expected_return_date ? formatCustomDate(formValue.expected_return_date) : '');
-    formData.append('device_type', this.deviceData.device_type);
+    formData.append('additionalDetails', formValue.additional_details);
+    formData.append('serialNo', formValue.serial_no.toUpperCase());
+    formData.append('lastUpdatedDate', formatCustomDate(new Date));
+    formData.append('expectedReturnDate', formValue.expected_return_date ? formatCustomDate(formValue.expected_return_date) : '');
+    formData.append('deviceType', this.deviceData.device_type);
 
     if (this.newAttachmentValue && this.newAttachmentValue.size > 2097152) {
       this.snackbar.error('Limit for file uploads is 2 MB. Kindly replace the attachment.')
@@ -138,6 +138,10 @@ export class EditDeviceComponent implements OnInit {
               disableClose: true,
               panelClass: 'unauthorized-popup'
             })
+          } else if (err.status === 400 && err.error.message && err.error.message === 'serial number already exist') {
+            this.snackbar.error('Serial number already used with different device.');
+          } else if (err.status === 400 && err.error.message && err.error.message === 'asset tag id already exist') {
+            this.snackbar.error('Asset tag id already used with different device.');
           } else {
             this.snackbar.error('Something went wrong, try again');
           }
@@ -152,11 +156,17 @@ export class EditDeviceComponent implements OnInit {
           });
         }, (err: any) => {
           this.loader.hide();
+          console.log(err);
+
           if (err.status === 401) {
             this.dialog.open(UnauthorizedComponent, {
               disableClose: true,
               panelClass: 'unauthorized-popup'
             });
+          } else if (err.status === 400 && err.error.message && err.error.message === 'serial number already exist') {
+            this.snackbar.error('Serial number already used with different device.');
+          } else if (err.status === 400 && err.error.message && err.error.message === 'asset tag id already exist') {
+            this.snackbar.error('Asset tag id already used with different device.');
           } else {
             this.snackbar.error('Something went wrong, try again');
           }

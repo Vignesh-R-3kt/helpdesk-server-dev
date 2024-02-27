@@ -84,16 +84,16 @@
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" *ngIf="newDeviceType === 'laptop'">
-                    <mat-label>HDD Size(in GB)</mat-label>
+                    <mat-label>Storage Size(in GB)</mat-label>
                     <input type="number" formControlName="storageSize" (input)="preventNumberField($event)" matInput
-                        title="HDD Size">
+                        title="Storage Size">
                     <mat-error
                         *ngIf="deviceForm.controls['storageSize'].touched && deviceForm.controls['storageSize'].dirty && deviceForm.controls['storageSize'].errors?.['required']">
                         Required Valid Input
                     </mat-error>
                     <mat-error
                         *ngIf="deviceForm.controls['storageSize'].touched && deviceForm.controls['storageSize'].dirty && deviceForm.controls['storageSize'].errors?.['max'] || deviceForm.controls['storageSize'].errors?.['min']">
-                        Invalid HDD Size
+                        Invalid Storage Size
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
